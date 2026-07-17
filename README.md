@@ -2,6 +2,8 @@
 
 Marketing site and documentation for [DevStackBox](https://www.devstackbox.com), built with Next.js and Fumadocs.
 
+**Repository:** [github.com/DevStackBox/DevStackBox-website](https://github.com/DevStackBox/DevStackBox-website)
+
 Documentation content lives in the [DevStackBox](https://github.com/DevStackBox/DevStackBox) app repository and is consumed at build time.
 
 ## Local development
@@ -32,8 +34,17 @@ DEVSTACKBOX_ROOT=../DevStackBox pnpm dev
 | -------- | ----------- |
 | `DEVSTACKBOX_ROOT` | Path to DevStackBox app repo (default: `../DevStackBox`) |
 | `GITHUB_REPO` | GitHub repo for releases API (default: `DevStackBox/DevStackBox`) |
-| `GITHUB_TOKEN` | Optional - higher GitHub API rate limits |
+| `GITHUB_TOKEN` | Optional — higher GitHub API rate limits |
 
 ## Deploy (Netlify)
 
-Netlify checks out both repos. See `.github/workflows/deploy.yml` and `netlify.toml`.
+Connect Netlify to **this repo** (`DevStackBox-website`), not the app repo.
+
+| Setting | Value |
+| ------- | ----- |
+| Branch | `main` |
+| Base directory | *(empty)* |
+| Build command | *(empty — uses `netlify.toml`)* |
+| Publish directory | *(empty — Next.js plugin)* |
+
+Netlify clones [DevStackBox](https://github.com/DevStackBox/DevStackBox) during build for docs. See `netlify.toml`.
