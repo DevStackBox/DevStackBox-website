@@ -1,0 +1,42 @@
+name: Deploy Website
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [docs-updated, release-published]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+
+      - name: Checkout DevStackBox (docs + policy files)
+        uses: actions/checkout@v4
+        with:
+          repository: DevStackBox/DevStackBox
+          path: devstackbox
+          ref: main
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - run: pnpm install
+
+      - name: Build
+        env:
+          DEVSTACKBOX_ROOT: ${{ github.workspace }}/devstackbox
+          GITHUB_REPO: DevStackBox/DevStackBox
+        run: pnpm build
+
+      # Connect this repo to Netlify for production deploys (see netlify.toml).
+      # Optional: add NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID secrets to deploy from CI.

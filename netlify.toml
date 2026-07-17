@@ -1,0 +1,11 @@
+[build]
+  command = "git clone --depth 1 https://github.com/DevStackBox/DevStackBox.git devstackbox && node scripts/prepare-content.mjs && pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  DEVSTACKBOX_ROOT = "./devstackbox"
+  GITHUB_REPO = "DevStackBox/DevStackBox"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
