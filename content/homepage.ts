@@ -41,5 +41,4 @@ export const siteConfig = {
   githubUrl: "https://github.com/DevStackBox/DevStackBox",
   githubOrg: "DevStackBox/DevStackBox",
   email: "hello@devstackbox.com",
-  securityEmail: "security@devstackbox.com",
 } as const;
