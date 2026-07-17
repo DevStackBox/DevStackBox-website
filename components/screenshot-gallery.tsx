@@ -1,12 +1,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
-import { devstackboxPath } from "@/lib/devstackbox-root";
 
 const IMAGE_EXT = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif"]);
 
 export function getScreenshotFiles(): string[] {
-  const dir = devstackboxPath("docs", "images");
+  const dir = path.join(process.cwd(), "public", "docs-images");
   if (!fs.existsSync(dir)) return [];
   return fs
     .readdirSync(dir)
