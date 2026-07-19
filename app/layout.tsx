@@ -8,22 +8,24 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "DevStackBox - Local PHP development for Windows",
+    default: "DevStackBox - Modern local PHP development for Windows",
     template: "%s · DevStackBox",
   },
   description:
-    "Free, open-source Apache, MySQL, PHP, and phpMyAdmin stack for Windows with a modern desktop UI.",
+    "Apache, PHP, MySQL and phpMyAdmin in one free, open-source desktop application for Windows. No telemetry. No cloud dependency.",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
     siteName: siteConfig.name,
+    description:
+      "Apache, PHP, MySQL and phpMyAdmin in one free, open-source desktop application for Windows.",
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.name,
     description:
-      "Free, open-source local PHP development stack for Windows.",
+      "Apache, PHP, MySQL and phpMyAdmin in one free, open-source desktop application for Windows.",
   },
 };
 

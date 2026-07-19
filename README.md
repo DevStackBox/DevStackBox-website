@@ -34,7 +34,7 @@ DEVSTACKBOX_ROOT=../DevStackBox pnpm dev
 | -------- | ----------- |
 | `DEVSTACKBOX_ROOT` | Path to DevStackBox app repo (default: `../DevStackBox`) |
 | `GITHUB_REPO` | GitHub repo for releases API (default: `DevStackBox/DevStackBox`) |
-| `GITHUB_TOKEN` | Optional — higher GitHub API rate limits |
+| `GITHUB_TOKEN` | Optional - higher GitHub API rate limits |
 
 ## Deploy (Netlify)
 
@@ -44,7 +44,7 @@ Connect Netlify to **this repo** (`DevStackBox-website`), not the app repo.
 | ------- | ----- |
 | Branch | `main` |
 | Base directory | *(empty)* |
-| Build command | *(empty — uses `netlify.toml`)* |
-| Publish directory | *(empty — Next.js plugin)* |
+| Build command | *(empty - uses `netlify.toml`)* |
+| Publish directory | *(empty - Next.js plugin)* |
 
 Netlify clones [DevStackBox](https://github.com/DevStackBox/DevStackBox) during build for docs. See `netlify.toml`.
