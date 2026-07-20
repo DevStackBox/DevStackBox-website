@@ -13,7 +13,7 @@ if (fs.existsSync(target)) {
 
 const repo = process.env.DEVSTACKBOX_GIT_URL ?? "https://github.com/DevStackBox/DevStackBox.git";
 
-console.log("Cloning DevStackBox (docs only)...");
+console.log("Cloning DevStackBox (docs + policy files)...");
 execSync(
   `git clone --depth 1 --filter=blob:none --sparse ${repo} devstackbox`,
   { cwd: websiteRoot, stdio: "inherit" },
@@ -25,7 +25,7 @@ execSync("git sparse-checkout init --no-cone", {
 });
 
 execSync(
-  "git sparse-checkout set docs /CHANGELOG.md /PRIVACY.md /SECURITY.md /LICENSE",
+  "git sparse-checkout set docs /CHANGELOG.md /PRIVACY.md /SECURITY.md /LICENSE /CODE_OF_CONDUCT.md",
   { cwd: target, stdio: "inherit" },
 );
 
