@@ -19,7 +19,7 @@ export function MarkdownPage({ title, markdown, description }: MarkdownPageProps
           <p className="mt-2 text-muted-foreground">{description}</p>
         ) : null}
       </header>
-      <div className="prose prose-neutral max-w-none dark:prose-invert prose-headings:scroll-mt-20 prose-a:text-primary">
+      <div className="doc-content prose-no-margin text-fd-foreground">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown>
       </div>
     </article>
@@ -28,7 +28,7 @@ export function MarkdownPage({ title, markdown, description }: MarkdownPageProps
 
 export function MarkdownPageSimple({ markdown }: { markdown: string }) {
   return (
-    <div className="prose prose-neutral max-w-none dark:prose-invert prose-headings:scroll-mt-20 prose-a:text-primary">
+    <div className="doc-content prose-no-margin text-fd-foreground">
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
     </div>
   );

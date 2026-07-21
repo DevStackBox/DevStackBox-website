@@ -7,6 +7,10 @@ import { siteConfig } from "@/content/homepage";
 import { buildPageMetadata, DEFAULT_OG_IMAGE } from "@/lib/page-metadata";
 import { websiteSchemas } from "@/lib/structured-data";
 import "./globals.css";
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
@@ -33,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
         <JsonLd data={websiteSchemas()} />
         <RootProvider>

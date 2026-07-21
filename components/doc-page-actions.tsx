@@ -3,7 +3,9 @@
 import { Check, Link2, Pencil } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/content/homepage";
+import { cn } from "@/lib/utils";
 
 type DocPageActionsProps = {
   slug: string;
@@ -30,28 +32,24 @@ export function DocPageActions({
   }
 
   return (
-    <div className="mt-12 space-y-6 border-t border-border pt-6">
-      <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+    <div className="mt-12 space-y-6 border-t border-fd-border pt-6">
+      <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
         {lastUpdated ? <span>Last updated: {lastUpdated}</span> : null}
         <a
           href={editUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1 hover:text-foreground"
+          className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
         >
-          <Pencil className="h-3.5 w-3.5" />
+          <Pencil className="size-3.5" />
           Edit this page
         </a>
         <button
           type="button"
           onClick={copyLink}
-          className="inline-flex items-center gap-1 hover:text-foreground"
+          className={cn(buttonVariants({ variant: "ghost", size: "sm" }))}
         >
-          {copied ? (
-            <Check className="h-3.5 w-3.5" />
-          ) : (
-            <Link2 className="h-3.5 w-3.5" />
-          )}
+          {copied ? <Check className="size-3.5" /> : <Link2 className="size-3.5" />}
           {copied ? "Copied" : "Copy page link"}
         </button>
       </div>
@@ -60,7 +58,7 @@ export function DocPageActions({
           {prev ? (
             <Link
               href={prev.href}
-              className="rounded-lg border border-border p-4 text-sm transition-colors hover:bg-muted/50"
+              className="rounded-lg border border-fd-border bg-card p-4 text-sm transition-colors hover:bg-muted/50"
             >
               <span className="text-muted-foreground">Previous</span>
               <p className="mt-1 font-medium text-foreground">{prev.title}</p>
@@ -71,7 +69,7 @@ export function DocPageActions({
           {next ? (
             <Link
               href={next.href}
-              className="rounded-lg border border-border p-4 text-sm text-right transition-colors hover:bg-muted/50 sm:text-right"
+              className="rounded-lg border border-fd-border bg-card p-4 text-sm text-right transition-colors hover:bg-muted/50 sm:text-right"
             >
               <span className="text-muted-foreground">Next</span>
               <p className="mt-1 font-medium text-foreground">{next.title}</p>

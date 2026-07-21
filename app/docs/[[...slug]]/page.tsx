@@ -70,7 +70,7 @@ export default async function DocPage(props: PageProps) {
             </p>
           ) : null}
         </header>
-        <div className="prose prose-neutral max-w-none dark:prose-invert prose-headings:scroll-mt-20 prose-a:text-primary">
+        <div className="doc-content prose-no-margin text-fd-foreground">
           <MDX components={getMDXComponents() as never} />
         </div>
         <DocPageActions

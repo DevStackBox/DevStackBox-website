@@ -18,7 +18,11 @@ function findTitleForSlug(slug: string): string {
       }
     }
   }
-  return slug;
+  return slug
+    .split("/")
+    .pop()!
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 export function DocsSidebar({ activeSlug }: { activeSlug: string }) {
@@ -27,7 +31,7 @@ export function DocsSidebar({ activeSlug }: { activeSlug: string }) {
       {docsNav.map((section) => (
         <div key={section.title}>
           <p className="mb-2 font-semibold text-foreground">{section.title}</p>
-          <ul className="space-y-1 border-l border-border pl-3">
+          <ul className="space-y-1 border-l border-fd-border pl-3">
             {section.items.flatMap((item) =>
               item.children
                 ? item.children.map((child) => (
@@ -36,7 +40,7 @@ export function DocsSidebar({ activeSlug }: { activeSlug: string }) {
                         href={`/docs/${child.slug}`}
                         className={
                           activeSlug === child.slug
-                            ? "font-medium text-primary"
+                            ? "font-medium text-fd-primary"
                             : "text-muted-foreground hover:text-foreground"
                         }
                       >
@@ -50,7 +54,7 @@ export function DocsSidebar({ activeSlug }: { activeSlug: string }) {
                         href={item.slug ? `/docs/${item.slug}` : "/docs"}
                         className={
                           activeSlug === item.slug
-                            ? "font-medium text-primary"
+                            ? "font-medium text-fd-primary"
                             : "text-muted-foreground hover:text-foreground"
                         }
                       >
