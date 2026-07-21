@@ -36,10 +36,9 @@ export function SiteHeader() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub repository"
-            className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+            className={cn(buttonVariants({ variant: "outline", size: "icon-sm" }))}
           >
             <GitHubIcon className="size-4" />
-            <span className="hidden sm:inline">GitHub</span>
           </a>
         </div>
       </div>
