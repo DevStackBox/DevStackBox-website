@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { formatReleaseDate, getReleases } from "@/lib/github";
+import { ReleaseBody } from "@/components/release-body";
+import {
+  findWindowsInstaller,
+  formatReleaseDate,
+  getReleases,
+} from "@/lib/github";
 
 import { buildPageMetadata } from "@/lib/page-metadata";
 
@@ -23,7 +28,9 @@ export default async function ReleasesPage() {
         {releases.length === 0 ? (
           <li className="text-muted-foreground">No releases found.</li>
         ) : (
-          releases.map((r) => (
+          releases.map((r) => {
+            const installer = findWindowsInstaller(r);
+            return (
             <li
               key={r.tag_name}
               className="rounded-xl border border-border p-6"
@@ -34,12 +41,7 @@ export default async function ReleasesPage() {
                   {formatReleaseDate(r.published_at)}
                 </time>
               </div>
-              {r.body ? (
-                <p className="mt-3 line-clamp-4 text-sm text-muted-foreground whitespace-pre-wrap">
-                  {r.body.slice(0, 400)}
-                  {r.body.length > 400 ? "…" : ""}
-                </p>
-              ) : null}
+              {r.body ? <ReleaseBody body={r.body} /> : null}
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <a
                   href={r.html_url}
@@ -49,17 +51,18 @@ export default async function ReleasesPage() {
                 >
                   View on GitHub
                 </a>
-                {r.assets[0] ? (
+                {installer ? (
                   <a
-                    href={r.assets[0].browser_download_url}
+                    href={installer.browser_download_url}
                     className="text-primary hover:underline"
                   >
-                    Download {r.assets[0].name}
+                    Download {installer.name}
                   </a>
                 ) : null}
               </div>
             </li>
-          ))
+            );
+          })
         )}
       </ul>
       <p className="mt-8">
