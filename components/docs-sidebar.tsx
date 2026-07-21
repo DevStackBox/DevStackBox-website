@@ -1,5 +1,11 @@
 import Link from "next/link";
 import { docsNav } from "@/lib/navigation";
+import { source } from "@/lib/source";
+
+function docPageExists(slug: string): boolean {
+  if (!slug) return true;
+  return source.getPage(slug.split("/")) !== undefined;
+}
 
 function findTitleForSlug(slug: string): string {
   for (const section of docsNav) {
@@ -94,16 +100,20 @@ export function getPrevNext(activeSlug: string) {
 }
 
 export function getBreadcrumbs(activeSlug: string) {
-  const crumbs = [{ label: "Documentation", href: "/docs" }];
+  const crumbs: { label: string; href?: string }[] = [
+    { label: "Documentation", href: "/docs" },
+  ];
   if (!activeSlug) return crumbs;
   const parts = activeSlug.split("/");
   let acc = "";
   for (const part of parts) {
     acc = acc ? `${acc}/${part}` : part;
-    crumbs.push({
-      label: findTitleForSlug(acc),
-      href: `/docs/${acc}`,
-    });
+    const label = findTitleForSlug(acc);
+    if (docPageExists(acc)) {
+      crumbs.push({ label, href: `/docs/${acc}` });
+    } else {
+      crumbs.push({ label });
+    }
   }
   return crumbs;
 }

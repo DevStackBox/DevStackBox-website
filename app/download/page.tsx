@@ -8,10 +8,13 @@ import {
   getLatestRelease,
 } from "@/lib/github";
 
-export const metadata: Metadata = {
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  path: "/download",
   title: "Download",
   description: "Download the latest DevStackBox installer for Windows.",
-};
+});
 
 export default async function DownloadPage() {
   const release = await getLatestRelease();

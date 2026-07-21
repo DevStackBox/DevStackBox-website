@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { formatReleaseDate, getReleases } from "@/lib/github";
 
-export const metadata: Metadata = {
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  path: "/releases",
   title: "Releases",
   description: "DevStackBox release history and downloads.",
-};
+});
 
 export default async function ReleasesPage() {
   const releases = await getReleases(30);

@@ -8,10 +8,13 @@ import {
   parseReleaseSections,
 } from "@/lib/github";
 
-export const metadata: Metadata = {
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  path: "/whats-new",
   title: "What's New",
   description: "Latest DevStackBox release highlights.",
-};
+});
 
 export default async function WhatsNewPage() {
   const release = await getLatestRelease();

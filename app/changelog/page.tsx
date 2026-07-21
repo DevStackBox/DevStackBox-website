@@ -3,10 +3,13 @@ import Link from "next/link";
 import { MarkdownPage } from "@/components/markdown-page";
 import { readRootMarkdown } from "@/lib/markdown";
 
-export const metadata: Metadata = {
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  path: "/changelog",
   title: "Changelog",
   description: "DevStackBox release history and notable changes.",
-};
+});
 
 export default function ChangelogPage() {
   const markdown = readRootMarkdown("CHANGELOG.md");

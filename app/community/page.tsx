@@ -4,10 +4,13 @@ import { MarkdownPageSimple } from "@/components/markdown-page";
 import { siteConfig } from "@/content/homepage";
 import { readRootMarkdown } from "@/lib/markdown";
 
-export const metadata: Metadata = {
+import { buildPageMetadata } from "@/lib/page-metadata";
+
+export const metadata: Metadata = buildPageMetadata({
+  path: "/community",
   title: "Community",
   description: "Join the DevStackBox open-source community.",
-};
+});
 
 export default function CommunityPage() {
   const coc = readRootMarkdown("CODE_OF_CONDUCT.md");

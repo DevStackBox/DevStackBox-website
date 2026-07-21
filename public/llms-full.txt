@@ -1,0 +1,59 @@
+# DevStackBox - extended reference for AI systems
+
+## Product summary
+DevStackBox is a free, MIT-licensed, open-source desktop application for Windows 10/11. It bundles Apache, PHP, MySQL, and phpMyAdmin for local PHP development. No telemetry. No cloud dependency. Offline-first after install.
+
+- Website: https://www.devstackbox.com
+- Download: https://www.devstackbox.com/download
+- GitHub: https://github.com/DevStackBox/DevStackBox
+- Contact: hello@devstackbox.com
+
+## Install paths
+- Application (default): C:\devstackbox
+- User data (default): %LOCALAPPDATA%\DevStackBox\
+- Override user data: DEVSTACKBOX_DATA_DIR environment variable
+
+## Default service ports
+- Apache HTTP: 80 (127.0.0.1)
+- MySQL: 3306
+- phpMyAdmin: served via Apache on port 80
+
+## Documentation URLs
+- Overview: https://www.devstackbox.com/docs
+- Installation: https://www.devstackbox.com/docs/getting-started/installation
+- Upgrading: https://www.devstackbox.com/docs/getting-started/upgrading
+- Configuration: https://www.devstackbox.com/docs/reference/configuration
+- Environment & networking: https://www.devstackbox.com/docs/advanced/environment
+- Troubleshooting: https://www.devstackbox.com/docs/advanced/troubleshooting
+- Installer & updates: https://www.devstackbox.com/docs/reference/installer
+- Feature status: https://www.devstackbox.com/docs/feature-status
+- Roadmap: https://www.devstackbox.com/docs/roadmap
+- FAQ: https://www.devstackbox.com/docs/faq
+
+## Source files (GitHub)
+- docs/getting-started/installation.mdx
+- docs/getting-started/upgrading.mdx
+- docs/reference/configuration.mdx
+- docs/reference/installer.mdx
+- docs/advanced/troubleshooting.mdx
+- docs/faq.mdx
+- docs/feature-status.mdx
+- docs/roadmap.mdx
+
+Base URL: https://github.com/DevStackBox/DevStackBox/tree/main/docs
+
+## FAQ (quick answers)
+Q: What is DevStackBox?
+A: A free, open-source local PHP stack for Windows with Apache, MySQL, PHP, and phpMyAdmin in one desktop app.
+
+Q: Is it free?
+A: Yes. MIT license. No paid tier.
+
+Q: Where is user data stored?
+A: %LOCALAPPDATA%\DevStackBox\ (www, mysql-data, config, logs, backups).
+
+Q: Does it collect telemetry?
+A: No.
+
+Q: How to report security issues?
+A: Email hello@devstackbox.com - do not open public GitHub issues for vulnerabilities.
