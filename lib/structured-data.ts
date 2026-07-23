@@ -1,6 +1,8 @@
 import { siteConfig } from "@/content/homepage";
 import { pageUrl } from "@/lib/page-metadata";
 
+export const ORGANIZATION_LOGO = `${siteConfig.url}/brand/icon-512.png`;
+
 type Breadcrumb = { label: string; href?: string };
 
 const FAQ_ENTRIES = [
@@ -47,6 +49,7 @@ export function websiteSchemas() {
       name: siteConfig.name,
       url: siteConfig.url,
       email: siteConfig.email,
+      logo: ORGANIZATION_LOGO,
       sameAs: [siteConfig.githubUrl],
     },
     {
@@ -87,6 +90,7 @@ export function docArticleSchema({
       "@type": "Organization",
       name: siteConfig.name,
       url: siteConfig.url,
+      logo: ORGANIZATION_LOGO,
     },
     ...(modifiedTime ? { dateModified: modifiedTime } : {}),
   };

@@ -22,6 +22,11 @@
 /content/docs
 /.source
 /lib/navigation-data.ts
+/public/brand/
+/public/og-default.png
+/app/favicon.ico
+/app/icon.png
+/app/apple-icon.png
 
 # Misc
 .DS_Store

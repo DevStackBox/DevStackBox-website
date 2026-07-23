@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ThemeSwitch } from "fumadocs-ui/layouts/shared/slots/theme-switch";
 import { GitHubIcon } from "@/components/github-icon";
+import { SiteLogo } from "@/components/site-logo";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/content/homepage";
 import { siteHeaderNav } from "@/lib/navigation";
@@ -14,9 +15,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           href="/"
-          className="text-lg font-semibold tracking-tight text-foreground"
+          className="flex items-center"
+          aria-label={siteConfig.name}
         >
-          {siteConfig.name}
+          <SiteLogo />
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {siteHeaderNav.map((item) => (

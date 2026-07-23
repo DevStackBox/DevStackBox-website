@@ -63,3 +63,48 @@ if (fs.existsSync(imagesSrc)) {
 } else {
   fs.mkdirSync(imagesDest, { recursive: true });
 }
+
+const logoSrc = path.join(imagesSrc, "logo");
+const brandDest = path.join(websiteRoot, "public", "brand");
+const appDir = path.join(websiteRoot, "app");
+
+function syncLogoAssets() {
+  if (!fs.existsSync(logoSrc)) {
+    console.warn("Logo folder not found at:", logoSrc);
+    return;
+  }
+
+  fs.rmSync(brandDest, { recursive: true, force: true });
+  fs.mkdirSync(brandDest, { recursive: true });
+
+  for (const file of fs.readdirSync(logoSrc)) {
+    const srcPath = path.join(logoSrc, file);
+    if (!fs.statSync(srcPath).isFile()) continue;
+    if (!/\.(svg|png|jpe?g|webp|ico)$/i.test(file)) continue;
+    fs.copyFileSync(srcPath, path.join(brandDest, file));
+  }
+
+  const faviconSrc = path.join(logoSrc, "favicon.ico");
+  if (fs.existsSync(faviconSrc)) {
+    fs.copyFileSync(faviconSrc, path.join(appDir, "favicon.ico"));
+  }
+
+  const icon512Src = path.join(logoSrc, "icon-512.png");
+  if (fs.existsSync(icon512Src)) {
+    fs.copyFileSync(icon512Src, path.join(appDir, "icon.png"));
+  }
+
+  const appleIconSrc = path.join(logoSrc, "apple-icon.png");
+  if (fs.existsSync(appleIconSrc)) {
+    fs.copyFileSync(appleIconSrc, path.join(appDir, "apple-icon.png"));
+  }
+
+  const ogSrc = path.join(logoSrc, "og-default.png");
+  if (fs.existsSync(ogSrc)) {
+    fs.copyFileSync(ogSrc, path.join(websiteRoot, "public", "og-default.png"));
+  }
+
+  console.log("Synced docs/images/logo → public/brand + app icons");
+}
+
+syncLogoAssets();

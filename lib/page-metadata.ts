@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { siteConfig } from "@/content/homepage";
 
-export const DEFAULT_OG_IMAGE = "/og-default.svg";
+export const DEFAULT_OG_IMAGE = "/og-default.png";
 
 export function pageUrl(path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
