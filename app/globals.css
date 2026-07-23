@@ -184,6 +184,18 @@
   .release-body strong {
     @apply font-semibold text-foreground;
   }
+
+  .release-body code {
+    @apply rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground;
+  }
+
+  .release-body hr {
+    @apply my-4 border-border;
+  }
+
+  .release-body a {
+    @apply text-primary underline-offset-4 hover:underline;
+  }
 }
 
 .text-hero {

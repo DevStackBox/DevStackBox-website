@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Download, ExternalLink } from "lucide-react";
+import { ReleaseBody } from "@/components/release-body";
 import { homepage } from "@/content/homepage";
 import {
   findWindowsInstaller,
@@ -65,9 +66,7 @@ export default async function DownloadPage() {
       {release?.body ? (
         <section className="mt-10">
           <h2 className="text-lg font-semibold">Release notes</h2>
-          <pre className="mt-4 whitespace-pre-wrap rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
-            {release.body.slice(0, 2000)}
-          </pre>
+          <ReleaseBody body={release.body} className="mt-4" />
         </section>
       ) : null}
 
