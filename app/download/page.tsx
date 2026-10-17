@@ -11,6 +11,8 @@ import {
 
 import { buildPageMetadata } from "@/lib/page-metadata";
 
+export const revalidate = 300;
+
 export const metadata: Metadata = buildPageMetadata({
   path: "/download",
   title: "Download",

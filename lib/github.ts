@@ -38,9 +38,15 @@ async function ghFetch<T>(path: string, revalidate = 3600): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export async function getLatestRelease(): Promise<GitHubRelease | null> {
+/** Shorter cache on download/home so new GitHub releases show up within minutes. */
+export async function getLatestRelease(
+  revalidateSeconds = 300,
+): Promise<GitHubRelease | null> {
   try {
-    return await ghFetch<GitHubRelease>(`/repos/${GITHUB_REPO}/releases/latest`);
+    return await ghFetch<GitHubRelease>(
+      `/repos/${GITHUB_REPO}/releases/latest`,
+      revalidateSeconds,
+    );
   } catch {
     return null;
   }

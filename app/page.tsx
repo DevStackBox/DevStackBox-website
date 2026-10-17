@@ -12,6 +12,8 @@ import { OpenSourceStrip } from "@/components/home/open-source-strip";
 import { ScreenshotGallery } from "@/components/screenshot-gallery";
 import { getLatestRelease, getRepoStats } from "@/lib/github";
 
+export const revalidate = 300;
+
 export default async function HomePage() {
   const [release, stats] = await Promise.all([
     getLatestRelease(),
