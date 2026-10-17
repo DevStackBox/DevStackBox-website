@@ -13,6 +13,7 @@
 
 # Next.js
 /.next/
+/.turbo/
 /out/
 
 # Production
@@ -31,6 +32,7 @@
 /app/apple-icon.png
 
 # Misc
+pnpm-debug.log*
 .DS_Store
 *.pem
 .env
