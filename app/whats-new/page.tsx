@@ -1,3 +1,4 @@
+import { ReleaseBody } from "@/components/release-body";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Download, ExternalLink } from "lucide-react";
@@ -5,7 +6,6 @@ import {
   findWindowsInstaller,
   formatReleaseDate,
   getLatestRelease,
-  parseReleaseSections,
 } from "@/lib/github";
 
 import { buildPageMetadata } from "@/lib/page-metadata";
@@ -33,7 +33,6 @@ export default async function WhatsNewPage() {
     );
   }
 
-  const sections = parseReleaseSections(release.body);
   const installer = findWindowsInstaller(release);
 
   return (
@@ -54,28 +53,9 @@ export default async function WhatsNewPage() {
         </div>
       </header>
 
-      <div className="mt-10 space-y-8">
-        {Object.entries(sections).map(([name, items]) =>
-          items.length ? (
-            <section key={name} className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-              <h2 className="text-xl font-semibold">{name}</h2>
-              <ul className="mt-4 list-inside list-disc space-y-2 text-muted-foreground">
-                {items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          ) : null,
-        )}
-        {Object.values(sections).every((items) => items.length === 0) && release.body ? (
-          <section className="rounded-2xl border border-border bg-card p-6 sm:p-8">
-            <h2 className="text-xl font-semibold">Release notes</h2>
-            <p className="mt-4 whitespace-pre-wrap leading-relaxed text-muted-foreground">{release.body}</p>
-          </section>
-        ) : null}
-      </div>
+      <section className="mt-10"><h2 className="mb-5 text-2xl font-semibold">Release highlights</h2>{release.body ? <ReleaseBody body={release.body} /> : <p className="text-muted-foreground">Read the full release on GitHub for details.</p>}</section>
 
-      <nav className="mt-12 flex flex-wrap gap-4 border-t border-border pt-8 text-sm">
+      <nav aria-label="Release links" className="mt-12 flex flex-wrap gap-4 border-t border-border pt-8 text-sm">
         <Link href="/changelog" className="text-primary hover:underline">
           Full changelog
         </Link>

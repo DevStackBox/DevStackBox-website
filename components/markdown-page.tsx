@@ -1,3 +1,4 @@
+import { stripLeadingH1 } from "@/lib/markdown";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -8,7 +9,7 @@ type MarkdownPageProps = {
 };
 
 export function MarkdownPage({ title, markdown, description }: MarkdownPageProps) {
-  const body = markdown.replace(/^#\s+.+\n+/, "");
+  const body = stripLeadingH1(markdown);
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
@@ -28,7 +29,7 @@ export function MarkdownPage({ title, markdown, description }: MarkdownPageProps
 export function MarkdownPageSimple({ markdown }: { markdown: string }) {
   return (
     <div className="doc-content prose-no-margin text-fd-foreground">
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{stripLeadingH1(markdown)}</ReactMarkdown>
     </div>
   );
 }

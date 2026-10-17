@@ -29,7 +29,7 @@ const FAQ_ENTRIES = [
   {
     question: "Does DevStackBox collect telemetry?",
     answer:
-      "No. DevStackBox does not collect usage data or phone home.",
+      "DevStackBox does not collect usage telemetry. Optional update checks and downloads make network requests.",
   },
 ];
 
@@ -42,11 +42,6 @@ export function websiteSchemas() {
       url: siteConfig.url,
       description:
         "Apache, PHP, MySQL and phpMyAdmin in one free, open-source desktop application for Windows.",
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${siteConfig.url}/docs?q={search_term_string}`,
-        "query-input": "required name=search_term_string",
-      },
     },
     {
       "@context": "https://schema.org",
@@ -65,7 +60,6 @@ export function websiteSchemas() {
       operatingSystem: "Windows 10, Windows 11",
       description:
         "Free XAMPP alternative: PHP 8.3 bundled, PHP up to 8.5 in app, MySQL 8.4 LTS, Apache, phpMyAdmin.",
-      softwareVersion: "0.1.11",
       featureList: [
         "PHP 8.3 bundled; PHP 8.1–8.5 on demand",
         "MySQL 8.4 LTS",

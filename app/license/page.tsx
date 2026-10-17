@@ -12,6 +12,6 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function LicensePage() {
   return (
-    <MarkdownPage title="MIT License" markdown={readRootMarkdown("LICENSE")} />
+    <><MarkdownPage title="MIT License" markdown={readRootMarkdown("LICENSE")} /><section className="mx-auto max-w-3xl px-4 pb-12 sm:px-6"><h2 className="text-xl font-semibold">Bundled software</h2><p className="mt-3 leading-7 text-muted-foreground">This license covers DevStackBox. Apache, PHP, MySQL, phpMyAdmin, and other bundled dependencies have their own licenses. Consult the LICENSE and NOTICE files distributed with each component in your installation.</p></section></>
   );
 }

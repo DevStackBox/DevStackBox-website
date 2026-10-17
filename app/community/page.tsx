@@ -20,7 +20,7 @@ export default function CommunityPage() {
       <h1 className="text-3xl font-bold tracking-tight">Community</h1>
       <p className="mt-3 text-muted-foreground">
         DevStackBox is a free, open-source project. We welcome bug reports,
-        feature discussions, and contributions.
+        feature discussions, documentation, translations, testing, and code contributions.
       </p>
 
       <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -68,6 +68,7 @@ export default function CommunityPage() {
         </Link>
       </div>
 
+      <section className="mt-10 rounded-xl border border-border p-6"><h2 className="text-xl font-semibold">Maintained by Nomad Programmer</h2><p className="mt-3 leading-7 text-muted-foreground">DevStackBox grows through practical feedback from Windows PHP developers. <a href="https://www.youtube.com/@NomadProgrammer" className="link-primary">Watch the tutorials on YouTube</a> or help improve the project on GitHub.</p><p className="mt-3 text-sm text-muted-foreground">For vulnerabilities, use the private reporting instructions on our <Link href="/security" className="link-primary">security page</Link>.</p></section>
       <section id="code-of-conduct" className="mt-16 scroll-mt-20">
         <h2 className="text-2xl font-bold">Code of Conduct</h2>
         <div className="mt-6">

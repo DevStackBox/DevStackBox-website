@@ -40,12 +40,12 @@ export default async function ReleasesPage() {
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h2 className="text-2xl font-semibold tracking-tight">{r.name || r.tag_name}</h2>
-                <time className="text-sm text-muted-foreground">
+                <time dateTime={r.published_at} className="text-sm text-muted-foreground">
                   {formatReleaseDate(r.published_at)}
                 </time>
               </div>
-              <p className="mt-1 text-sm text-muted-foreground">{r.tag_name}</p>
-              {r.body ? <ReleaseBody body={r.body} className="mt-5" /> : null}
+              <p className="mt-1 text-sm text-muted-foreground">{r.tag_name} · {r.prerelease ? "Pre-release" : "Stable"}</p>
+              {r.body ? <details className="mt-5"><summary className="py-2 text-sm font-medium text-primary">Read release notes</summary><ReleaseBody body={r.body} className="mt-3" /></details> : null}
               <div className="mt-5 flex flex-wrap gap-4 text-sm">
                 <a
                   href={r.html_url}
@@ -69,6 +69,7 @@ export default async function ReleasesPage() {
           })
         )}
       </ul>
+      <p className="mt-8 text-sm text-muted-foreground">Showing up to 30 recent releases. <a href="https://github.com/DevStackBox/DevStackBox/releases" className="link-primary">Browse the complete history on GitHub</a>.</p>
       <p className="mt-8"><Link href="/download" className="link-primary text-sm">← Latest download</Link></p>
     </div>
   );

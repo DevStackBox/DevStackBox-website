@@ -1,24 +1,12 @@
-import type { Metadata } from "next";
-import { SeoLanding } from "@/components/marketing/seo-landing";
+import Link from "next/link";
 import { buildPageMetadata } from "@/lib/page-metadata";
-
-export const metadata: Metadata = buildPageMetadata({
-  path: "/migrate-from-xampp",
-  title: "Migrate from XAMPP",
-  description: "Move projects from XAMPP to DevStackBox on Windows - copy htdocs and import databases with the in-app wizard.",
-  ogImage: "/og/migrate-from-xampp.png",
-});
-
-export default function MigrateFromXamppPage() {
-  return (
-    <SeoLanding
-      title="Migrate from XAMPP to DevStackBox"
-      intro="Install DevStackBox, then use Import from XAMPP in the app to copy your htdocs folder. Export MySQL from phpMyAdmin in XAMPP and import into DevStackBox if you need existing databases."
-      bullets={[
-        "Default XAMPP path: C:\\xampp",
-        "Projects land in DevStackBox www folder",
-        "PHP 8.3 works immediately; add 8.4 or 8.5 from PHP Versions",
-      ]}
-    />
-  );
-}
+export const metadata = buildPageMetadata({path:"/migrate-from-xampp",title:"Migrate from XAMPP",description:"Move projects from XAMPP to DevStackBox on Windows. Copy htdocs with the in-app importer, then export and import databases separately."});
+const steps = [
+["Back up your current projects", "Copy your XAMPP htdocs folder to a separate backup. Export each database as SQL from XAMPP phpMyAdmin while its database service is running. Keep the originals until you have tested everything."],
+["Install DevStackBox", "Install the Windows app. Stop XAMPP Apache and its database service before starting the equivalent DevStackBox services, so ports 80 and 3306 are available."],
+["Copy your project files", "Open Settings → Import from XAMPP, select your installation, and choose Copy htdocs to www. The importer copies files into the DevStackBox install folder's www directory and skips existing files with the same name. It does not import databases or merge conflicting files."],
+["Import databases separately", "Start DevStackBox MySQL and Apache. Open phpMyAdmin, create the required databases, and import your SQL exports. XAMPP uses MariaDB; DevStackBox uses MySQL 8.4 LTS. Review import errors and compatibility rather than copying raw database data folders."],
+["Update settings and test", "Check database credentials, ports, local URLs, absolute paths, and the PHP version your project requires. Test pages, logins, uploads, database writes, and background commands before retiring the old stack."],
+["Keep a rollback path", "Retain your original files and exports. If you need to return to XAMPP, stop DevStackBox services before restarting XAMPP. Keep new data backed up separately so it is not lost when switching."],
+];
+export default function Page() { return <article className="mx-auto max-w-3xl px-5 py-14 sm:px-6 sm:py-20"><p className="eyebrow">Keep your projects moving</p><h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">Move from XAMPP,<br />one step at a time.</h1><p className="mt-6 text-lg leading-8 text-muted-foreground">The importer handles project files. Databases are a separate export and import, giving you a chance to check compatibility before switching.</p><ol className="mt-12 space-y-8">{steps.map(([title,body],i) => <li key={title} className="flex gap-5"><span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-semibold text-primary">{i+1}</span><div><h2 className="text-xl font-semibold">{title}</h2><p className="mt-3 leading-8 text-muted-foreground">{body}</p></div></li>)}</ol><div className="mt-12 flex flex-wrap gap-3 border-t border-border pt-8"><Link href="/download" className="btn-primary">Download DevStackBox</Link><Link href="/docs/advanced/troubleshooting" className="btn-secondary">Troubleshooting</Link></div></article>; }

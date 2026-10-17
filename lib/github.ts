@@ -3,6 +3,7 @@ const API = "https://api.github.com";
 
 export type GitHubRelease = {
   tag_name: string;
+  prerelease?: boolean;
   name: string;
   published_at: string;
   html_url: string;
@@ -11,6 +12,7 @@ export type GitHubRelease = {
     name: string;
     browser_download_url: string;
     size: number;
+    digest?: string | null;
   }[];
 };
 
@@ -30,6 +32,7 @@ async function ghFetch<T>(path: string, revalidate = 3600): Promise<T> {
   }
   const res = await fetch(`${API}${path}`, {
     headers,
+    signal: AbortSignal.timeout(8000),
     next: { revalidate },
   });
   if (!res.ok) {
@@ -48,6 +51,7 @@ export async function getLatestRelease(
       revalidateSeconds,
     );
   } catch {
+    console.warn("GitHub data unavailable; using the public release fallback.");
     return null;
   }
 }
@@ -58,6 +62,7 @@ export async function getReleases(limit = 20): Promise<GitHubRelease[]> {
       `/repos/${GITHUB_REPO}/releases?per_page=${limit}`,
     );
   } catch {
+    console.warn("GitHub data unavailable; using the public release fallback.");
     return [];
   }
 }
@@ -66,26 +71,22 @@ export async function getRepoStats(): Promise<RepoStats | null> {
   try {
     return await ghFetch<RepoStats>(`/repos/${GITHUB_REPO}`);
   } catch {
+    console.warn("GitHub data unavailable; using the public release fallback.");
     return null;
   }
 }
 
 export function findWindowsInstaller(release: GitHubRelease) {
-  return (
-    release.assets.find((a) =>
-      /\.exe$/i.test(a.name) && /setup|installer/i.test(a.name),
-    ) ??
-    release.assets.find((a) => /\.exe$/i.test(a.name)) ??
-    release.assets[0]
-  );
+  return release.assets.find(a => /(?:x64|amd64|x86_64)/i.test(a.name) && /(?:setup|installer).*\.exe$/i.test(a.name));
 }
 
-export function findSha256(body: string): string | null {
-  return body.match(/\bSHA-?256\b[^a-f0-9]*([a-f0-9]{64})/i)?.[1]?.toUpperCase() ?? null;
+export function findSha256(asset: GitHubRelease["assets"][number] | null | undefined): string | null {
+  return asset?.digest?.match(/^sha256:([a-f0-9]{64})$/i)?.[1]?.toUpperCase() ?? null;
 }
 
 export function formatReleaseDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
+    timeZone: "UTC",
     year: "numeric",
     month: "long",
     day: "numeric",

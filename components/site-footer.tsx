@@ -1,105 +1,28 @@
 import Link from "next/link";
-import { siteFooterNav } from "@/lib/navigation";
+import { ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/content/homepage";
 import { SiteLogo } from "@/components/site-logo";
-
-type FooterLinkItem = {
-  label: string;
-  href: string;
-  external?: boolean;
-};
-
-const productLinks: FooterLinkItem[] = [
-  { label: "Download", href: "/download" },
-  { label: "XAMPP alternative", href: "/xampp-alternative" },
-  { label: "Releases", href: "/releases" },
-  { label: "What's new", href: "/whats-new" },
+import { GitHubIcon } from "@/components/github-icon";
+const groups = [
+  { title: "Product", links: [["Download for Windows", "/download"], ["What's new", "/whats-new"], ["Releases", "/releases"], ["Compare alternatives", "/xampp-alternative"], ["Migrate from XAMPP", "/migrate-from-xampp"]] },
+  { title: "Resources", links: [["Documentation", "/docs"], ["Installation", "/docs/getting-started/installation"], ["Troubleshooting", "/docs/advanced/troubleshooting"], ["FAQ", "/docs/faq"], ["Roadmap", "/docs/roadmap"]] },
+  { title: "Community", links: [["Contributing", siteConfig.githubUrl + "/blob/main/CONTRIBUTING.md"], ["Discussions", siteConfig.githubUrl + "/discussions"], ["Report an issue", siteConfig.githubUrl + "/issues"], ["Meet the project", "/community"], ["Code of Conduct", "/community#code-of-conduct"]] },
 ];
-
-const documentationLinks = siteFooterNav.documentation.filter(
-  (item) => item.label !== "Download" && item.label !== "Releases",
-);
-
-const communityLinks: FooterLinkItem[] = [
-  { label: "Community guidelines", href: "/community" },
-  { label: "Report an issue", href: `${siteConfig.githubUrl}/issues`, external: true },
-  { label: "Discussions", href: `${siteConfig.githubUrl}/discussions`, external: true },
-  {
-    label: "Contribute",
-    href: `${siteConfig.githubUrl}/blob/main/CONTRIBUTING.md`,
-    external: true,
-  },
-];
-
-function FooterLinkList({ items }: { items: readonly FooterLinkItem[] }) {
-  return (
-    <ul className="space-y-2.5 text-sm text-muted-foreground">
-      {items.map((item) => (
-        <li key={item.href}>
-          {item.external ? (
-            <a href={item.href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">
-              {item.label}
-            </a>
-          ) : (
-            <Link href={item.href} className="transition-colors hover:text-foreground">
-              {item.label}
-            </Link>
-          )}
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function FooterColumn({ title, items }: { title: string; items: readonly FooterLinkItem[] }) {
-  return (
-    <section>
-      <h2 className="mb-4 text-sm font-semibold text-foreground">{title}</h2>
-      <FooterLinkList items={items} />
-    </section>
-  );
-}
-
 export function SiteFooter() {
-  return (
-    <footer className="mt-auto border-t border-border/60 bg-muted/30">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[minmax(220px,1.1fr)_minmax(0,2.9fr)] lg:gap-14">
-        <div className="max-w-xs">
-          <Link href="/" aria-label={siteConfig.name}>
-            <SiteLogo />
-          </Link>
-          <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-            A local Apache, PHP, and MySQL environment for Windows developers.
-          </p>
-        </div>
-
-        <nav aria-label="Footer navigation" className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <FooterColumn title="Product" items={productLinks} />
-          <section>
-            <h2 className="mb-4 text-sm font-semibold text-foreground">Resources</h2>
-            <div className="space-y-7">
-              <div>
-                <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Documentation</h3>
-                <FooterLinkList items={documentationLinks} />
-              </div>
-              <div>
-                <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Legal</h3>
-                <FooterLinkList items={siteFooterNav.legal} />
-              </div>
-            </div>
-          </section>
-          <FooterColumn title="Community" items={communityLinks} />
-        </nav>
+  return <footer className="border-t border-border bg-muted/35"><div className="mx-auto max-w-6xl px-5 sm:px-6">
+    <div className="grid gap-12 py-14 lg:grid-cols-[1.1fr_2fr] lg:gap-20">
+      <div><Link href="/" aria-label="DevStackBox home" className="inline-flex"><SiteLogo /></Link>
+        <p className="mt-5 max-w-xs text-sm leading-7 text-muted-foreground">Local PHP development for Windows.<br />Your projects. Your machine. Your stack.</p>
+        <a href={siteConfig.githubUrl} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-medium hover:text-primary" target="_blank" rel="noopener noreferrer"><GitHubIcon className="size-4" /> Built in the open <ArrowUpRight className="size-3.5" /></a>
       </div>
-
-      <div className="border-t border-border/60 px-4 py-5 text-sm text-muted-foreground sm:px-6">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} DevStackBox</p>
-          <a href={siteConfig.githubUrl} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">
-            Open-source project on GitHub
-          </a>
-        </div>
-      </div>
-    </footer>
-  );
+      <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-x-6 gap-y-9 sm:grid-cols-3">{groups.map(group => <section key={group.title}>
+        <h2 className="mb-4 text-sm font-semibold">{group.title}</h2><ul className="space-y-1">{group.links.map(([label, href]) => <li key={href}>
+          {href.startsWith("https:") ? <a href={href} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center text-sm text-muted-foreground hover:text-primary">{label}</a> : <Link href={href} className="inline-flex min-h-9 items-center text-sm text-muted-foreground hover:text-primary">{label}</Link>}
+        </li>)}</ul></section>)}</nav>
+    </div>
+    <div className="flex flex-col gap-4 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} DevStackBox · Made by Nomad Programmer</p>
+      <nav aria-label="Legal" className="flex flex-wrap gap-x-6 gap-y-3"><Link href="/license" className="hover:text-foreground">MIT License</Link><Link href="/privacy" className="hover:text-foreground">Privacy</Link><Link href="/security" className="hover:text-foreground">Security</Link></nav>
+    </div>
+  </div></footer>;
 }

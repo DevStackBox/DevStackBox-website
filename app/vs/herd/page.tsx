@@ -1,25 +1,6 @@
-import type { Metadata } from "next";
-import { SeoLanding } from "@/components/marketing/seo-landing";
-import { stackVersions } from "@/content/stack-versions";
+import { ComparisonPage } from "@/components/marketing/comparison-page";
 import { buildPageMetadata } from "@/lib/page-metadata";
-
-export const metadata: Metadata = buildPageMetadata({
-  path: "/vs/herd",
-  title: "DevStackBox vs Herd",
-  description: "DevStackBox is a free, open-source Windows PHP stack. Compare with Herd for local Laravel development.",
-  ogImage: "/og/vs-herd.png",
-});
-
-export default function VsHerdPage() {
-  return (
-    <SeoLanding
-      title="DevStackBox vs Herd"
-      intro="Herd targets macOS and Windows with a paid model. DevStackBox is MIT-licensed for Windows with PHP 8.3 out of the box and MySQL 8.4 LTS."
-      bullets={[
-        "No account required",
-        `PHP through ${stackVersions.php.latestSupportedBranch} via in-app download`,
-        "Full control of Apache and MySQL configs",
-      ]}
-    />
-  );
-}
+export const metadata = buildPageMetadata({path:"/vs/herd",title:"DevStackBox vs Herd",description:"Compare DevStackBox's Apache and MySQL Windows stack with Herd's free PHP environment and optional Pro features."});
+export default function Page() { return <ComparisonPage title="DevStackBox vs Herd" competitor="Herd" intro="Herd has a free PHP development environment and optional paid Pro capabilities. DevStackBox bundles an Apache and MySQL stack in a free, MIT-licensed Windows app." rows={[
+["Price","Free (MIT)","Free basic edition; optional paid Pro"], ["Platform","Windows 10/11 x64","Windows and macOS"], ["Web server","Apache","nginx"], ["Database workflow","MySQL 8.4 LTS and phpMyAdmin included","Managed database services in Pro"], ["Focus","Local PHP projects, Apache configuration, and XAMPP migration","Laravel and PHP development with integrated tooling"],
+]} tradeoff="DevStackBox is a natural fit if you want Apache, bundled MySQL, and familiar phpMyAdmin workflows on Windows. Herd is worth considering for its Laravel-focused environment, nginx, and integrated developer tooling. Its basic edition is free; compare the particular Pro features you need." source="https://herd.laravel.com/windows" sourceLabel="Official Herd for Windows" />; }

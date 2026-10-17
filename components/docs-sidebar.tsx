@@ -27,7 +27,7 @@ function findTitleForSlug(slug: string): string {
 
 export function DocsSidebar({ activeSlug }: { activeSlug: string }) {
   return (
-    <nav className="space-y-6 text-sm">
+    <nav aria-label="Documentation" className="space-y-6 text-sm">
       {docsNav.map((section) => (
         <div key={section.title}>
           <p className="mb-2 font-semibold text-foreground">{section.title}</p>
@@ -38,6 +38,7 @@ export function DocsSidebar({ activeSlug }: { activeSlug: string }) {
                     <li key={child.slug}>
                       <Link
                         href={`/docs/${child.slug}`}
+                        aria-current={activeSlug === child.slug ? "page" : undefined}
                         className={
                           activeSlug === child.slug
                             ? "font-medium text-fd-primary"
@@ -52,6 +53,7 @@ export function DocsSidebar({ activeSlug }: { activeSlug: string }) {
                     <li key={item.slug || "index"}>
                       <Link
                         href={item.slug ? `/docs/${item.slug}` : "/docs"}
+                        aria-current={activeSlug === item.slug ? "page" : undefined}
                         className={
                           activeSlug === item.slug
                             ? "font-medium text-fd-primary"

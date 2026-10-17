@@ -1,10 +1,11 @@
 import fs from "node:fs";
+import { transformDoc } from "./docs-transform.mjs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const websiteRoot = path.join(__dirname, "..");
+const websiteRoot = fs.realpathSync(path.join(__dirname, ".."));
 const devstackboxRoot = path.resolve(
   process.env.DEVSTACKBOX_ROOT ?? path.join(websiteRoot, "..", "DevStackBox"),
 );
@@ -33,7 +34,7 @@ function copyMdx(srcDir, destDir, relative = "") {
       let content = fs.readFileSync(srcPath, "utf8");
       content = content.replace(/<!--[\s\S]*?-->\n?/g, "");
       content = content.replace(/<->/g, "↔");
-      fs.writeFileSync(destPath, content);
+      fs.writeFileSync(destPath, transformDoc(content, rel));
       try {
         const sourcePath = path.relative(devstackboxRoot, srcPath).replace(/\\/g, "/");
         const modifiedAt = execFileSync(
@@ -41,15 +42,16 @@ function copyMdx(srcDir, destDir, relative = "") {
           ["log", "-1", "--format=%cI", "--", sourcePath],
           { cwd: devstackboxRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
         ).trim();
-        if (modifiedAt) docsMetadata[`docs/${rel}`] = modifiedAt;
+        docsMetadata[`docs/${rel}`] = modifiedAt || null;
       } catch {
-        // Keep pages available if the app checkout has no Git history.
+        docsMetadata[`docs/${rel}`] = null;
       }
     }
   }
 }
 
 const navSrc = path.join(docsSrc, "navigation.ts");
+if (!fs.existsSync(navSrc)) throw new Error("Required docs navigation is missing");
 const navDest = path.join(websiteRoot, "lib", "navigation-data.ts");
 if (fs.existsSync(navSrc)) {
   fs.copyFileSync(navSrc, navDest);
@@ -76,6 +78,8 @@ for (const filename of ["CHANGELOG.md", "CODE_OF_CONDUCT.md", "LICENSE", "PRIVAC
   const srcPath = path.join(devstackboxRoot, filename);
   if (fs.existsSync(srcPath)) {
     fs.copyFileSync(srcPath, path.join(rootMarkdownDest, filename));
+  } else {
+    throw new Error(`Required content missing: ${filename}`);
   }
 }
 console.log("Synced root Markdown pages");
@@ -84,7 +88,7 @@ if (fs.existsSync(imagesSrc)) {
   fs.rmSync(imagesDest, { recursive: true, force: true });
   fs.mkdirSync(imagesDest, { recursive: true });
   for (const file of fs.readdirSync(imagesSrc)) {
-    if (/\.(png|jpe?g|webp|gif)$/i.test(file)) {
+    if (["services-current.png"].includes(file)) {
       fs.copyFileSync(path.join(imagesSrc, file), path.join(imagesDest, file));
     }
   }

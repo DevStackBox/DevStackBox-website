@@ -20,13 +20,12 @@ export const metadata: Metadata = buildPageMetadata({
   title: "Download",
   description:
     "Download DevStackBox for Windows - free XAMPP alternative with PHP 8.3, MySQL 8.4 LTS, and PHP 8.5 on demand.",
-  ogImage: "/og/download.png",
 });
 
 export default async function DownloadPage() {
   const release = await getLatestRelease();
   const installer = release ? findWindowsInstaller(release) : null;
-  const checksum = release ? findSha256(release.body) : null;
+  const checksum = findSha256(installer);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:py-16">
@@ -77,6 +76,7 @@ export default async function DownloadPage() {
             <div className="mt-5 rounded-xl bg-muted p-4">
               <p className="flex items-center gap-2 text-xs font-semibold text-muted-foreground"><Check className="size-4 text-primary" />SHA-256 checksum</p>
               <code className="mt-2 block break-all font-mono text-xs leading-relaxed">{checksum}</code>
+              <p className="mt-3 text-xs leading-6">In PowerShell, run <code>Get-FileHash -Algorithm SHA256 &quot;path-to-installer.exe&quot;</code> and compare the full hash.</p>
             </div>
           ) : null}
         </div>
@@ -88,8 +88,7 @@ export default async function DownloadPage() {
           <StackIncludedPanel />
         </div>
         <p className="mt-6 text-sm text-muted-foreground">
-          Windows may show SmartScreen for an unknown publisher. Choose More info, then Run anyway, or verify the
-          SHA-256 checksum above. See our{" "}
+          The installer is not Windows Authenticode-signed, so SmartScreen may show an unknown publisher. Verify the file and its source before running it. See our{" "}
           <Link href="/security" className="link-primary">
             security page
           </Link>
@@ -107,7 +106,7 @@ export default async function DownloadPage() {
           </section>
           <section className="mt-10 rounded-2xl border border-border bg-card p-5">
             <h2 className="font-semibold">Prefer to verify the release?</h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Check the installer checksum against the value above, or review the release files and notes directly on GitHub.</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Review the release files on GitHub and compare the installer’s SHA-256 digest when available.</p>
             <a href={release?.html_url ?? "https://github.com/DevStackBox/DevStackBox/releases/latest"} target="_blank" rel="noopener noreferrer" className="link-primary mt-4 inline-flex items-center gap-2 text-sm">Open GitHub release <ExternalLink className="size-3.5" /></a>
           </section>
         </div>

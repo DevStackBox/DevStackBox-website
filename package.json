@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "predev": "node scripts/prepare-content.mjs",
-    "dev": "next dev --turbopack",
+    "dev": "node scripts/next.mjs dev --turbopack",
     "prebuild": "node scripts/prepare-content.mjs",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "build": "node scripts/next.mjs build",
+    "start": "node scripts/next.mjs start",
+    "lint": "eslint",
+    "test": "node --test tests/*.test.mjs",
+    "test:smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
@@ -42,5 +44,10 @@
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "packageManager": "pnpm@9.15.9",
+  "type": "module"
 }

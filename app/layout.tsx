@@ -5,13 +5,13 @@ import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/content/homepage";
-import { buildPageMetadata, DEFAULT_OG_IMAGE } from "@/lib/page-metadata";
+import { buildPageMetadata } from "@/lib/page-metadata";
 import { websiteSchemas } from "@/lib/structured-data";
 import "./globals.css";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({subsets:['latin'],variable:'--font-geist-sans'});
 
 export const metadata: Metadata = {
   ...buildPageMetadata({
@@ -24,12 +24,6 @@ export const metadata: Metadata = {
     template: "%s · DevStackBox",
   },
   metadataBase: new URL(siteConfig.url),
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    siteName: siteConfig.name,
-    images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: siteConfig.name }],
-  },
 };
 
 export default function RootLayout({
@@ -43,8 +37,9 @@ export default function RootLayout({
         <JsonLd data={websiteSchemas()} />
         <Analytics />
         <RootProvider>
+          <a href="#main-content" className="skip-link">Skip to content</a>
           <SiteHeader />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" tabIndex={-1} className="min-w-0 flex-1">{children}</main>
           <SiteFooter />
         </RootProvider>
       </body>

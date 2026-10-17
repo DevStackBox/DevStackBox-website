@@ -3,7 +3,7 @@ import remarkGfm from "remark-gfm";
 import { cn } from "@/lib/utils";
 
 function prepareReleaseBody(body: string): string {
-  let text = body.trim();
+  let text = body.replace(/\r\n?/g, "\n").trim();
   text = text.replace(/^#\s+.+\n+/, "");
   text = text.replace(/^##\s+DevStackBox[^\n]*\n+/i, "");
   text = text.replace(/^\*\*[^*\n]+\*\*\s*\n+/, "");

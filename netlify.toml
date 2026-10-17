@@ -1,9 +1,9 @@
 [build]
-  command = "node scripts/clone-devstackbox.mjs && node scripts/prepare-content.mjs && pnpm build"
+  command = "node scripts/clone-devstackbox.mjs && pnpm build"
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "24"
   DEVSTACKBOX_ROOT = "./devstackbox"
   GITHUB_REPO = "DevStackBox/DevStackBox"
 

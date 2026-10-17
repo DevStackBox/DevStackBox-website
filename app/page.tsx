@@ -1,43 +1,13 @@
-import {
-  BottomDownloadCta,
-} from "@/components/home/bottom-download-cta";
-import { BuiltFor } from "@/components/home/built-for";
+import { BottomDownloadCta } from "@/components/home/bottom-download-cta";
 import { CommunityCta } from "@/components/home/community-cta";
 import { DocsPreview } from "@/components/home/docs-preview";
-import { FeatureGrid } from "@/components/home/feature-grid";
 import { FeatureShowcase } from "@/components/home/feature-showcase";
 import { HeroSection } from "@/components/home/hero-section";
-import { LatestReleaseSection } from "@/components/home/latest-release-section";
 import { ComparisonTable } from "@/components/home/comparison-table";
-import { NomadSection } from "@/components/home/nomad-section";
-import { OpenSourceStrip } from "@/components/home/open-source-strip";
-import { ScreenshotGallery } from "@/components/screenshot-gallery";
 import { StackVersionsSection } from "@/components/home/stack-versions-section";
 import { getLatestRelease, getRepoStats } from "@/lib/github";
-
 export const revalidate = 300;
-
 export default async function HomePage() {
-  const [release, stats] = await Promise.all([
-    getLatestRelease(),
-    getRepoStats(),
-  ]);
-
-  return (
-    <>
-      <HeroSection release={release} />
-      <OpenSourceStrip />
-      <StackVersionsSection />
-      <FeatureGrid />
-      <ComparisonTable />
-      <BuiltFor />
-      <FeatureShowcase />
-      <ScreenshotGallery />
-      <LatestReleaseSection release={release} />
-      <DocsPreview />
-      <NomadSection />
-      <CommunityCta stats={stats} />
-      <BottomDownloadCta />
-    </>
-  );
+  const [release, stats] = await Promise.all([getLatestRelease(), getRepoStats()]);
+  return <><HeroSection release={release} /><StackVersionsSection /><FeatureShowcase /><DocsPreview /><ComparisonTable /><CommunityCta stats={stats} /><BottomDownloadCta /></>;
 }

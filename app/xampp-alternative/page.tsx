@@ -1,25 +1,6 @@
-import type { Metadata } from "next";
-import { SeoLanding } from "@/components/marketing/seo-landing";
-import { stackVersions } from "@/content/stack-versions";
+import { ComparisonPage } from "@/components/marketing/comparison-page";
 import { buildPageMetadata } from "@/lib/page-metadata";
-
-export const metadata: Metadata = buildPageMetadata({
-  path: "/xampp-alternative",
-  title: "XAMPP alternative for Windows",
-  description: `DevStackBox is a free XAMPP alternative with PHP ${stackVersions.php.bundledLabel} bundled and PHP ${stackVersions.php.latestSupportedBranch} on demand.`,
-  ogImage: "/og/xampp-alternative.png",
-});
-
-export default function XamppAlternativePage() {
-  return (
-    <SeoLanding
-      title="XAMPP alternative for Windows"
-      intro={`XAMPP for Windows ships PHP ${stackVersions.xamppWindowsPhp}. DevStackBox installs PHP ${stackVersions.php.bundledLabel} and lets you add PHP ${stackVersions.php.latestSupportedBranch} without a second stack.`}
-      bullets={[
-        "One MIT-licensed desktop app for Apache, MySQL, phpMyAdmin, and PHP",
-        "Unlimited local sites - no paid tier",
-        "Offline-friendly after install",
-      ]}
-    />
-  );
-}
+export const metadata = buildPageMetadata({path:"/xampp-alternative",title:"XAMPP alternative for Windows",description:"Compare DevStackBox and XAMPP for Windows: PHP versions, MySQL versus MariaDB, and moving existing projects."});
+export default function Page() { return <ComparisonPage title="A free XAMPP alternative for Windows" competitor="XAMPP (Windows)" intro="Keep the familiar Apache, PHP, and phpMyAdmin workflow, with MySQL 8.4 LTS and additional PHP versions available from the DevStackBox desktop app." rows={[
+["Price","Free (MIT)","Free"], ["PHP","8.3 bundled; additional 8.1–8.5 branches in the app","Windows downloads through PHP 8.2.12"], ["Database","MySQL 8.4.11 LTS","MariaDB 10.4.32"], ["Local sites","Unlimited","Unlimited"], ["Moving projects","Import copies htdocs; databases move separately","Export existing databases before migrating"],
+]} tradeoff="Use DevStackBox when you want MySQL 8.4 LTS and in-app PHP version selection on Windows. XAMPP remains a familiar option with distributions for other operating systems. MySQL and MariaDB are different products: test database exports, SQL compatibility, and application settings before switching." source="https://www.apachefriends.org/download.html" sourceLabel="Official XAMPP downloads" />; }

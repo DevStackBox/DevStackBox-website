@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 
 type DocPageActionsProps = {
   slug: string;
+  sourcePath: string;
   lastUpdated?: string | null;
   prev?: { title: string; href: string } | null;
   next?: { title: string; href: string } | null;
@@ -16,19 +17,24 @@ type DocPageActionsProps = {
 
 export function DocPageActions({
   slug,
+  sourcePath,
   lastUpdated,
   prev,
   next,
 }: DocPageActionsProps) {
   const [copied, setCopied] = useState(false);
-  const docPath = slug ? `docs/${slug}.mdx` : "docs/index.mdx";
+  const docPath = sourcePath;
+  const [copyError, setCopyError] = useState(false);
   const editUrl = `${siteConfig.githubUrl}/edit/main/${docPath}`;
   const pageUrl = `${siteConfig.url}/docs${slug ? `/${slug}` : ""}`;
 
   async function copyLink() {
+    try {
     await navigator.clipboard.writeText(pageUrl);
+    setCopyError(false);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    } catch { setCopyError(true); }
   }
 
   return (
@@ -53,6 +59,7 @@ export function DocPageActions({
           {copied ? "Copied" : "Copy page link"}
         </button>
       </div>
+      <p role="status" className="text-sm text-muted-foreground">{copyError ? "Could not copy. Copy the address from your browser instead." : copied ? "Page link copied." : ""}</p>
       {(prev || next) && (
         <div className="grid gap-3 sm:grid-cols-2">
           {prev ? (

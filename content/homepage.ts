@@ -5,7 +5,7 @@ export const homepage = {
       "Apache, MySQL, and PHP 8.3 in one installer. Add PHP up to 8.5 from the app. MIT licensed, no site limits, no telemetry.",
     primaryCta: "Download for Windows",
     secondaryCta: "Read the Documentation",
-    heroImage: "services-dashboard.jpg",
+    heroImage: "app/services-dark-1202x831.png",
     trustBadges: ["MIT Licensed", "Windows 10/11", "No telemetry"],
     stackBadges: ["PHP 8.3 bundled", "PHP 8.5 in app", "MySQL 8.4.11", "Apache 2.4"],
   },
@@ -26,7 +26,7 @@ export const homepage = {
       icon: "Shield" as const,
       title: "Privacy by default",
       description:
-        "No accounts, no telemetry, no phone-home. Your projects and data stay on your machine.",
+        "No accounts or usage telemetry. Your projects and data stay on your machine.",
     },
     {
       icon: "Zap" as const,
@@ -54,13 +54,13 @@ export const homepage = {
       title: "Manage your stack",
       description:
         "Start and stop Apache and MySQL, check versions and ports, and open phpMyAdmin from one screen.",
-      image: "services-dashboard.jpg",
+      image: "app/services-dark-1202x831.png",
     },
     {
-      title: "Keep project work in one place",
+      title: "Choose your PHP runtime",
       description:
-        "Browse local projects and manage virtual hosts, logs, and configuration from the same Windows app.",
-      image: "projects.jpg",
+        "Download additional PHP versions while keeping your bundled runtime available.",
+      image: "app/php-85-download-1202x831.png",
     },
   ],
   docLinks: [
