@@ -18,18 +18,23 @@ export function ScreenshotGallery() {
             : "grid gap-6 sm:grid-cols-2"
         }
       >
-        {files.map((file) => (
+        {files.map((screenshot) => (
           <div
-            key={file}
+            key={screenshot.src}
             className="overflow-hidden rounded-xl border border-border bg-muted/20 shadow-md ring-1 ring-border/50"
           >
             <Image
-              src={`/docs-images/${file}`}
-              alt={file.replace(/\.[^.]+$/, "").replace(/[-_]/g, " ")}
-              width={1280}
-              height={800}
+              src={screenshot.src}
+              alt={screenshot.alt}
+              width={1202}
+              height={831}
+              sizes="(max-width: 640px) 100vw, 50vw"
               className="h-auto w-full"
             />
+            <div className="p-4">
+              <h3 className="font-semibold">{screenshot.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{screenshot.description}</p>
+            </div>
           </div>
         ))}
       </div>

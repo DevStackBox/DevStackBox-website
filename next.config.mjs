@@ -1,4 +1,3 @@
-import path from "node:path";
 import { createMDX } from "fumadocs-mdx/next";
 
 const withMDX = createMDX();
@@ -10,9 +9,6 @@ const nextConfig = {
   },
   outputFileTracingIncludes: {
     "/*": ["./content/docs/**/*"],
-  },
-  turbopack: {
-    root: path.resolve("."),
   },
   async redirects() {
     return [

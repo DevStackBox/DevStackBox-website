@@ -19,42 +19,46 @@ export default async function ReleasesPage() {
   const releases = await getReleases(30);
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <h1 className="text-3xl font-bold tracking-tight">Releases</h1>
-      <p className="mt-2 text-muted-foreground">
-        All DevStackBox releases from GitHub.
-      </p>
-      <ul className="mt-10 space-y-6">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
+      <header className="max-w-2xl">
+        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">Download history</p>
+        <h1 className="mt-3 text-4xl font-bold tracking-tight">DevStackBox releases</h1>
+        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">Release notes and Windows installers published to GitHub.</p>
+      </header>
+      <ul className="mt-10 space-y-5">
         {releases.length === 0 ? (
-          <li className="text-muted-foreground">No releases found.</li>
+          <li className="rounded-2xl border border-border bg-card p-6 text-muted-foreground">
+            Release information is temporarily unavailable. <a href="https://github.com/DevStackBox/DevStackBox/releases" target="_blank" rel="noopener noreferrer" className="link-primary">Open GitHub Releases</a>.
+          </li>
         ) : (
           releases.map((r) => {
             const installer = findWindowsInstaller(r);
             return (
             <li
               key={r.tag_name}
-              className="rounded-xl border border-border p-6"
+              className="rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h2 className="text-xl font-semibold">{r.tag_name}</h2>
+                <h2 className="text-2xl font-semibold tracking-tight">{r.name || r.tag_name}</h2>
                 <time className="text-sm text-muted-foreground">
                   {formatReleaseDate(r.published_at)}
                 </time>
               </div>
-              {r.body ? <ReleaseBody body={r.body} /> : null}
-              <div className="mt-4 flex flex-wrap gap-3 text-sm">
+              <p className="mt-1 text-sm text-muted-foreground">{r.tag_name}</p>
+              {r.body ? <ReleaseBody body={r.body} className="mt-5" /> : null}
+              <div className="mt-5 flex flex-wrap gap-4 text-sm">
                 <a
                   href={r.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:underline"
+                  className="link-primary"
                 >
                   View on GitHub
                 </a>
                 {installer ? (
                   <a
                     href={installer.browser_download_url}
-                    className="text-primary hover:underline"
+                    className="link-primary"
                   >
                     Download {installer.name}
                   </a>
@@ -65,11 +69,7 @@ export default async function ReleasesPage() {
           })
         )}
       </ul>
-      <p className="mt-8">
-        <Link href="/download" className="text-sm text-primary hover:underline">
-          ← Latest download
-        </Link>
-      </p>
+      <p className="mt-8"><Link href="/download" className="link-primary text-sm">← Latest download</Link></p>
     </div>
   );
 }

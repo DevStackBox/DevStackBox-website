@@ -1,21 +1,19 @@
 import fs from "node:fs";
 import path from "node:path";
+import { homepage } from "@/content/homepage";
 
-const PLACEHOLDER = "/marketing/placeholder-app.svg";
-
-/** Filenames used only in hero / showcase - excluded from the gallery grid. */
-export const MARKETING_ONLY_IMAGES = new Set([
-  "hero-dashboard.webp",
-  "hero-dashboard.png",
-  "showcase-services.webp",
-  "showcase-services.png",
-  "showcase-config.webp",
-  "showcase-config.png",
-  "showcase-dashboard.webp",
-  "showcase-dashboard.png",
-]);
+export type MarketingScreenshot = {
+  src: string;
+  title: string;
+  description: string;
+  alt: string;
+};
 
 export function resolveMarketingImage(filename: string): string {
+  const screenshot = `/screenshots/${filename}`;
+  if (fs.existsSync(path.join(process.cwd(), "public", screenshot))) {
+    return screenshot;
+  }
   const base = path.join(process.cwd(), "public", "docs-images", filename);
   if (fs.existsSync(base)) {
     return `/docs-images/${filename}`;
@@ -25,15 +23,29 @@ export function resolveMarketingImage(filename: string): string {
   if (alt !== filename && fs.existsSync(altPath)) {
     return `/docs-images/${alt}`;
   }
-  return PLACEHOLDER;
+  throw new Error(`Marketing screenshot not found: ${filename}`);
 }
 
-export function listGalleryImages(): string[] {
-  const dir = path.join(process.cwd(), "public", "docs-images");
-  if (!fs.existsSync(dir)) return [];
-  const ext = /\.(png|jpe?g|webp|gif)$/i;
-  return fs
-    .readdirSync(dir)
-    .filter((f) => ext.test(f) && !MARKETING_ONLY_IMAGES.has(f))
-    .sort();
+export function listGalleryImages(): MarketingScreenshot[] {
+  const appScreenshots = homepage.featureShowcase.map((screenshot) => ({
+    ...screenshot,
+    src: resolveMarketingImage(screenshot.image),
+    alt: `DevStackBox ${screenshot.title.toLowerCase()} screen in the Windows desktop application`,
+  }));
+  const docsDir = path.join(process.cwd(), "public", "docs-images");
+  if (!fs.existsSync(docsDir)) return appScreenshots;
+  const extraScreenshots = fs.readdirSync(docsDir)
+    .filter((filename) => /^(screenshot-|.*\.gif$)/i.test(filename) && /\.(png|jpe?g|webp|gif)$/i.test(filename))
+    .filter((filename) => !homepage.featureShowcase.some((screenshot) => screenshot.image === filename))
+    .sort()
+    .map((filename) => {
+      const title = filename.replace(/\.[^.]+$/, "").replace(/^screenshot-/, "").replace(/[-_]/g, " ");
+      return {
+        src: `/docs-images/${filename}`,
+        title,
+        description: `DevStackBox ${title.toLowerCase()} screen.`,
+        alt: `DevStackBox ${title.toLowerCase()} screenshot`,
+      };
+    });
+  return [...appScreenshots, ...extraScreenshots];
 }

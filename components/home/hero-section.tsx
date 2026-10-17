@@ -28,11 +28,11 @@ export function HeroSection({ release }: HeroSectionProps) {
   const heroSrc = resolveMarketingImage(homepage.hero.heroImage);
 
   return (
-    <section className="border-b border-border/60 bg-gradient-to-b from-muted/40 to-background section-py">
+    <section className="border-b border-border/60 bg-gradient-to-br from-primary/10 via-background to-background section-py">
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12">
         <div>
-          <p className="mb-4 text-sm font-medium text-primary">
-            Free & open source · Windows 10/11
+          <p className="mb-4 text-sm font-semibold tracking-wide text-primary">
+            Free and open source · Windows 10/11
           </p>
           <h1 className="text-hero max-w-xl">{homepage.hero.title}</h1>
           <p className="text-body mt-5 max-w-xl text-lg leading-relaxed">
@@ -66,13 +66,15 @@ export function HeroSection({ release }: HeroSectionProps) {
           <div className="overflow-hidden rounded-xl border border-border bg-muted/30 shadow-lg shadow-black/5 ring-1 ring-border/60">
             <Image
               src={heroSrc}
-              alt="DevStackBox desktop application"
-              width={1280}
-              height={800}
+              alt="DevStackBox for Windows showing Apache and MySQL running and PHP ready"
+              width={1202}
+              height={831}
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="h-auto w-full"
               priority
             />
           </div>
+          <p className="mt-3 text-center text-xs text-muted-foreground">A real screenshot of DevStackBox v0.1.10 on Windows</p>
         </div>
       </div>
     </section>

@@ -9,7 +9,6 @@ import { FeatureShowcase } from "@/components/home/feature-showcase";
 import { HeroSection } from "@/components/home/hero-section";
 import { LatestReleaseSection } from "@/components/home/latest-release-section";
 import { OpenSourceStrip } from "@/components/home/open-source-strip";
-import { ScreenshotGallery } from "@/components/screenshot-gallery";
 import { getLatestRelease, getRepoStats } from "@/lib/github";
 
 export const revalidate = 300;
@@ -27,7 +26,6 @@ export default async function HomePage() {
       <FeatureGrid />
       <BuiltFor />
       <FeatureShowcase />
-      <ScreenshotGallery />
       <LatestReleaseSection release={release} />
       <DocsPreview />
       <CommunityCta stats={stats} />

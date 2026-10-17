@@ -12,7 +12,7 @@ export function FeatureGrid() {
   return (
     <section className="section-py mx-auto max-w-6xl px-4 sm:px-6">
       <h2 className="text-section mb-10 text-center">Why DevStackBox?</h2>
-      <div className="grid gap-6 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {homepage.features.map((f) => {
           const Icon = ICONS[f.icon];
           return (

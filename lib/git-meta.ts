@@ -1,5 +1,4 @@
-import { execSync } from "node:child_process";
-import { devstackboxPath, getDevstackboxRoot } from "./devstackbox-root";
+import docsMetadata from "@/content/docs-meta.json";
 
 export function getLastUpdated(relativePath: string): string | null {
   const iso = getLastModifiedIso(relativePath);
@@ -12,14 +11,5 @@ export function getLastUpdated(relativePath: string): string | null {
 }
 
 export function getLastModifiedIso(relativePath: string): string | null {
-  try {
-    const full = devstackboxPath(relativePath);
-    const out = execSync(
-      `git log -1 --format=%cI -- "${full.replace(/\\/g, "/")}"`,
-      { cwd: getDevstackboxRoot(), encoding: "utf8" },
-    ).trim();
-    return out || null;
-  } catch {
-    return null;
-  }
+  return (docsMetadata as Record<string, string>)[relativePath] ?? null;
 }

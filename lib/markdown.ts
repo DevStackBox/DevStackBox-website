@@ -1,8 +1,8 @@
 import fs from "node:fs";
-import { devstackboxPath } from "./devstackbox-root";
+import path from "node:path";
 
 export function readRootMarkdown(filename: string): string {
-  const filePath = devstackboxPath(filename);
+  const filePath = path.join(process.cwd(), "content", "root-markdown", filename);
   if (!fs.existsSync(filePath)) {
     return `# ${filename}\n\nContent not found.`;
   }

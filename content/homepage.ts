@@ -1,25 +1,19 @@
 export const homepage = {
   hero: {
-    title: "The modern local development environment for Windows",
+    title: "Your local PHP stack, ready on Windows.",
     subtitle:
-      "Apache, PHP, MySQL and phpMyAdmin in one free, open-source desktop application. No telemetry. No cloud dependency. Built for modern PHP development.",
+      "Run Apache, PHP, and MySQL from one desktop app. Keep your projects on your PC, manage the stack in one place, and get started without stitching together separate installers.",
     primaryCta: "Download for Windows",
     secondaryCta: "Read the Documentation",
-    heroImage: "hero-dashboard.webp",
-    trustBadges: [
-      "MIT Licensed",
-      "Open Source",
-      "Windows 10/11",
-      "Offline First",
-    ],
+    heroImage: "services-dashboard.jpg",
+    trustBadges: ["MIT Licensed", "Windows 10/11", "No telemetry"],
     stackBadges: ["Apache", "PHP", "MySQL", "phpMyAdmin"],
   },
   openSourceStrip: [
     { label: "MIT Licensed", href: "/license" },
     { label: "GitHub", href: "https://github.com/DevStackBox/DevStackBox", external: true },
     { label: "Privacy First", href: "/privacy" },
-    { label: "Offline", href: "/docs/advanced/environment" },
-    { label: "No Telemetry", href: "/privacy" },
+    { label: "Windows desktop app", href: "/download" },
   ],
   features: [
     {
@@ -57,25 +51,16 @@ export const homepage = {
   ],
   featureShowcase: [
     {
-      title: "Manage your entire stack",
+      title: "Manage your stack",
       description:
-        "Start and stop Apache, MySQL, and PHP from a single dashboard. See status at a glance and open phpMyAdmin when you need it.",
-      image: "showcase-services.webp",
-      imagePosition: "right" as const,
+        "Start and stop Apache and MySQL, check versions and ports, and open phpMyAdmin from one screen.",
+      image: "services-dashboard.jpg",
     },
     {
-      title: "Edit configs without leaving the app",
+      title: "Keep project work in one place",
       description:
-        "Tune Apache, PHP, and MySQL settings with guided UI - fixed paths under C:\\devstackbox so you always know where files live.",
-      image: "showcase-config.webp",
-      imagePosition: "left" as const,
-    },
-    {
-      title: "A desktop app, not a control panel from 2005",
-      description:
-        "Dark and light themes, service health, backups, and a workflow designed for daily PHP development on Windows.",
-      image: "showcase-dashboard.webp",
-      imagePosition: "right" as const,
+        "Browse local projects and manage virtual hosts, logs, and configuration from the same Windows app.",
+      image: "projects.jpg",
     },
   ],
   docLinks: [

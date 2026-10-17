@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -10,8 +11,10 @@ const devstackboxRoot = path.resolve(
 
 const docsSrc = path.join(devstackboxRoot, "docs");
 const docsDest = path.join(websiteRoot, "content", "docs");
+const rootMarkdownDest = path.join(websiteRoot, "content", "root-markdown");
 const imagesSrc = path.join(docsSrc, "images");
 const imagesDest = path.join(websiteRoot, "public", "docs-images");
+const docsMetadata = {};
 
 const SKIP_DIRS = new Set(["archive", "images", "assets", "standards"]);
 
@@ -31,6 +34,17 @@ function copyMdx(srcDir, destDir, relative = "") {
       content = content.replace(/<!--[\s\S]*?-->\n?/g, "");
       content = content.replace(/<->/g, "↔");
       fs.writeFileSync(destPath, content);
+      try {
+        const sourcePath = path.relative(devstackboxRoot, srcPath).replace(/\\/g, "/");
+        const modifiedAt = execFileSync(
+          "git",
+          ["log", "-1", "--format=%cI", "--", sourcePath],
+          { cwd: devstackboxRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
+        ).trim();
+        if (modifiedAt) docsMetadata[`docs/${rel}`] = modifiedAt;
+      } catch {
+        // Keep pages available if the app checkout has no Git history.
+      }
     }
   }
 }
@@ -50,6 +64,21 @@ if (!fs.existsSync(docsSrc)) {
 fs.rmSync(docsDest, { recursive: true, force: true });
 copyMdx(docsSrc, docsDest);
 console.log("Synced MDX → content/docs from", devstackboxRoot);
+fs.writeFileSync(
+  path.join(websiteRoot, "content", "docs-meta.json"),
+  `${JSON.stringify(docsMetadata, null, 2)}\n`,
+);
+console.log("Synced docs modification dates");
+
+fs.rmSync(rootMarkdownDest, { recursive: true, force: true });
+fs.mkdirSync(rootMarkdownDest, { recursive: true });
+for (const filename of ["CHANGELOG.md", "CODE_OF_CONDUCT.md", "LICENSE", "PRIVACY.md", "SECURITY.md"]) {
+  const srcPath = path.join(devstackboxRoot, filename);
+  if (fs.existsSync(srcPath)) {
+    fs.copyFileSync(srcPath, path.join(rootMarkdownDest, filename));
+  }
+}
+console.log("Synced root Markdown pages");
 
 if (fs.existsSync(imagesSrc)) {
   fs.rmSync(imagesDest, { recursive: true, force: true });

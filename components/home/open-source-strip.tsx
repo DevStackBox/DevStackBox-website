@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { homepage, siteConfig } from "@/content/homepage";
+import { homepage } from "@/content/homepage";
 
 export function OpenSourceStrip() {
   return (
@@ -22,15 +22,6 @@ export function OpenSourceStrip() {
             </Link>
           ),
         )}
-        <span className="hidden text-muted-foreground sm:inline">·</span>
-        <a
-          href={siteConfig.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-small hover:text-foreground"
-        >
-          {siteConfig.githubOrg}
-        </a>
       </div>
     </section>
   );

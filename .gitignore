@@ -20,6 +20,8 @@
 
 # Generated content from DevStackBox repo
 /content/docs
+/content/docs-meta.json
+/content/root-markdown/
 /.source
 /lib/navigation-data.ts
 /public/brand/

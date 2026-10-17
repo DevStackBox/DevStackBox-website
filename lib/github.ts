@@ -80,6 +80,10 @@ export function findWindowsInstaller(release: GitHubRelease) {
   );
 }
 
+export function findSha256(body: string): string | null {
+  return body.match(/\bSHA-?256\b[^a-f0-9]*([a-f0-9]{64})/i)?.[1]?.toUpperCase() ?? null;
+}
+
 export function formatReleaseDate(iso: string): string {
   return new Date(iso).toLocaleDateString("en-US", {
     year: "numeric",
