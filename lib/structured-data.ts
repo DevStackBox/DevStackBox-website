@@ -1,4 +1,5 @@
 import { siteConfig } from "@/content/homepage";
+import { stackVersions } from "@/content/stack-versions";
 import { pageUrl } from "@/lib/page-metadata";
 
 export const ORGANIZATION_LOGO = `${siteConfig.url}/brand/icon-512.png`;
@@ -9,7 +10,11 @@ const FAQ_ENTRIES = [
   {
     question: "What is DevStackBox?",
     answer:
-      "DevStackBox is a free, open-source local PHP development stack for Windows. It bundles Apache, MySQL, PHP, and phpMyAdmin in a single desktop app with a modern UI.",
+      "DevStackBox is a free XAMPP alternative for Windows with Apache, MySQL 8.4 LTS, phpMyAdmin, and PHP 8.3 in one desktop app.",
+  },
+  {
+    question: "Which PHP versions are supported?",
+    answer: `PHP ${stackVersions.php.bundledLabel} ships in the installer. PHP ${stackVersions.php.onDemandBranches.join(", ")} can be downloaded in the app (latest: ${stackVersions.php.latestSupportedBranch}).`,
   },
   {
     question: "Is DevStackBox free?",
@@ -19,7 +24,7 @@ const FAQ_ENTRIES = [
   {
     question: "Where does DevStackBox install?",
     answer:
-      "The application installs to C:\\devstackbox by default. User data is stored in %LOCALAPPDATA%\\DevStackBox\\.",
+      "The application installs to C:\\devstackbox by default. User data is stored in %LOCALAPPDATA%\\devstackbox\\.",
   },
   {
     question: "Does DevStackBox collect telemetry?",
@@ -59,7 +64,14 @@ export function websiteSchemas() {
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Windows 10, Windows 11",
       description:
-        "Apache, PHP, MySQL and phpMyAdmin in one free, open-source desktop application for Windows.",
+        "Free XAMPP alternative: PHP 8.3 bundled, PHP up to 8.5 in app, MySQL 8.4 LTS, Apache, phpMyAdmin.",
+      softwareVersion: "0.1.11",
+      featureList: [
+        "PHP 8.3 bundled; PHP 8.1–8.5 on demand",
+        "MySQL 8.4 LTS",
+        "Import from XAMPP",
+        "No telemetry",
+      ],
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       url: siteConfig.url,
       downloadUrl: `${siteConfig.url}/download`,

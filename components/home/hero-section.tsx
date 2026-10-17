@@ -74,7 +74,7 @@ export function HeroSection({ release }: HeroSectionProps) {
               priority
             />
           </div>
-          <p className="mt-3 text-center text-xs text-muted-foreground">A real screenshot of DevStackBox v0.1.10 on Windows</p>
+          <p className="mt-3 text-center text-xs text-muted-foreground">DevStackBox on Windows</p>
         </div>
       </div>
     </section>

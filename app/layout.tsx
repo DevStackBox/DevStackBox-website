@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { RootProvider } from "fumadocs-ui/provider/next";
+import { Analytics } from "@/components/analytics";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   ...buildPageMetadata({
     path: "/",
     description:
-      "Apache, PHP, MySQL and phpMyAdmin in one free, open-source desktop application for Windows. No telemetry. No cloud dependency.",
+      "Free XAMPP alternative for Windows: PHP 8.3 in the installer, PHP up to 8.5 in the app, MySQL 8.4 LTS, Apache, phpMyAdmin. MIT licensed.",
   }),
   title: {
     default: "DevStackBox - Modern local PHP development for Windows",
@@ -40,6 +41,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
         <JsonLd data={websiteSchemas()} />
+        <Analytics />
         <RootProvider>
           <SiteHeader />
           <main className="flex-1">{children}</main>

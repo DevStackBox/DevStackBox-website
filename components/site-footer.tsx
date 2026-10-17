@@ -11,6 +11,7 @@ type FooterLinkItem = {
 
 const productLinks: FooterLinkItem[] = [
   { label: "Download", href: "/download" },
+  { label: "XAMPP alternative", href: "/xampp-alternative" },
   { label: "Releases", href: "/releases" },
   { label: "What's new", href: "/whats-new" },
 ];

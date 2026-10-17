@@ -13,11 +13,13 @@ export function buildPageMetadata({
   title,
   description,
   type = "website",
+  ogImage = DEFAULT_OG_IMAGE,
 }: {
   path: string;
   title?: string;
   description: string;
   type?: "website" | "article";
+  ogImage?: string;
 }): Metadata {
   const url = pageUrl(path);
   const ogTitle = title ? `${title} · DevStackBox` : undefined;
@@ -31,13 +33,13 @@ export function buildPageMetadata({
       url,
       type,
       siteName: siteConfig.name,
-      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: siteConfig.name }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: siteConfig.name }],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle ?? siteConfig.name,
       description,
-      images: [DEFAULT_OG_IMAGE],
+      images: [ogImage],
     },
   };
 }

@@ -10,6 +10,7 @@ import {
   getLatestRelease,
 } from "@/lib/github";
 
+import { StackIncludedPanel } from "@/components/marketing/stack-included-panel";
 import { buildPageMetadata } from "@/lib/page-metadata";
 
 export const revalidate = 300;
@@ -17,7 +18,8 @@ export const revalidate = 300;
 export const metadata: Metadata = buildPageMetadata({
   path: "/download",
   title: "Download",
-  description: "Download the latest DevStackBox installer for Windows.",
+  description:
+    "Download DevStackBox for Windows - free XAMPP alternative with PHP 8.3, MySQL 8.4 LTS, and PHP 8.5 on demand.",
 });
 
 export default async function DownloadPage() {
@@ -77,6 +79,21 @@ export default async function DownloadPage() {
             </div>
           ) : null}
         </div>
+      </section>
+
+      <section className="mt-12 rounded-2xl border border-border bg-card p-6 sm:p-8">
+        <h2 className="text-2xl font-bold tracking-tight">Stack contents</h2>
+        <div className="mt-6">
+          <StackIncludedPanel />
+        </div>
+        <p className="mt-6 text-sm text-muted-foreground">
+          Windows may show SmartScreen for an unknown publisher. Choose More info, then Run anyway, or verify the
+          SHA-256 checksum above. See our{" "}
+          <Link href="/security" className="link-primary">
+            security page
+          </Link>
+          .
+        </p>
       </section>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">

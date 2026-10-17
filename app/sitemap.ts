@@ -15,6 +15,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/security",
     "/license",
     "/whats-new",
+    "/xampp-alternative",
+    "/migrate-from-xampp",
+    "/vs/laragon",
+    "/vs/herd",
   ].map((path) => ({
     url: `${base}${path}`,
     lastModified: new Date(),

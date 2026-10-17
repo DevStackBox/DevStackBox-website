@@ -1,13 +1,13 @@
 export const homepage = {
   hero: {
-    title: "Your local PHP stack, ready on Windows.",
+    title: "The free XAMPP alternative for Windows.",
     subtitle:
-      "Run Apache, PHP, and MySQL from one desktop app. Keep your projects on your PC, manage the stack in one place, and get started without stitching together separate installers.",
+      "Apache, MySQL, and PHP 8.3 in one installer. Add PHP up to 8.5 from the app. MIT licensed, no site limits, no telemetry.",
     primaryCta: "Download for Windows",
     secondaryCta: "Read the Documentation",
     heroImage: "services-dashboard.jpg",
     trustBadges: ["MIT Licensed", "Windows 10/11", "No telemetry"],
-    stackBadges: ["Apache", "PHP", "MySQL", "phpMyAdmin"],
+    stackBadges: ["PHP 8.3 bundled", "PHP 8.5 in app", "MySQL 8.4.11", "Apache 2.4"],
   },
   openSourceStrip: [
     { label: "MIT Licensed", href: "/license" },
