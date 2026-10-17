@@ -20,6 +20,7 @@ export const metadata: Metadata = buildPageMetadata({
   title: "Download",
   description:
     "Download DevStackBox for Windows - free XAMPP alternative with PHP 8.3, MySQL 8.4 LTS, and PHP 8.5 on demand.",
+  ogImage: "/og/download.png",
 });
 
 export default async function DownloadPage() {
