@@ -11,5 +11,5 @@ export function getLastUpdated(relativePath: string): string | null {
 }
 
 export function getLastModifiedIso(relativePath: string): string | null {
-  return (docsMetadata as Record<string, string>)[relativePath] ?? null;
+  return (docsMetadata as Record<string, string | null>)[relativePath] ?? null;
 }

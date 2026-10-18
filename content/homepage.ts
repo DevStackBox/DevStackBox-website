@@ -2,10 +2,10 @@ export const homepage = {
   hero: {
     title: "The free XAMPP alternative for Windows.",
     subtitle:
-      "Apache, MySQL, and PHP 8.3 in one installer. Add PHP up to 8.5 from the app. MIT licensed, no site limits, no telemetry.",
+      "Apache, MySQL, and PHP 8.3 in one installer. Coming in v0.1.12: project workspaces, per-site PHP, and trusted local HTTPS. MIT licensed, no site limits.",
     primaryCta: "Download for Windows",
     secondaryCta: "Read the Documentation",
-    heroImage: "app/services-dark-1202x831.png",
+    heroImage: "app/services-preview.jpg",
     trustBadges: ["MIT Licensed", "Windows 10/11", "No telemetry"],
     stackBadges: ["PHP 8.3 bundled", "PHP 8.5 in app", "MySQL 8.4.11", "Apache 2.4"],
   },
@@ -50,16 +50,18 @@ export const homepage = {
     "Drupal",
   ],
   featureShowcase: [
+    { title: "Your project workspace", description: "Internal preview of v0.1.12 features: a.test uses PHP 8.5 and trusted HTTPS. The app label is the internal test version, not a public release.", image: "app/projects-preview.jpg" },
+    { title: "Website health and HTTPS", description: "Real project details: HTTP 200 and trusted HTTPS checked separately, with folder and document-root settings below.", image: "app/project-details-preview.jpg" },
     {
       title: "Manage your stack",
       description:
-        "Start and stop Apache and MySQL, check versions and ports, and open phpMyAdmin from one screen.",
-      image: "app/services-dark-1202x831.png",
+        "Internal preview: Apache running, MySQL 8.4.11 stopped, and PHP 8.3 ready. Internal v0.1.15 features are being prepared for public v0.1.12.",
+      image: "app/services-preview.jpg",
     },
     {
       title: "Choose your PHP runtime",
       description:
-        "Download additional PHP versions while keeping your bundled runtime available.",
+        "Download additional PHP versions in PHP settings. In v0.1.12, select an installed runtime per website; terminal sessions still use global PHP.",
       image: "app/php-85-download-1202x831.png",
     },
   ],
@@ -71,8 +73,8 @@ export const homepage = {
     },
     {
       label: "Your first project",
-      href: "/docs",
-      description: "Overview of the stack, folders, and next steps.",
+      href: "/docs/getting-started/projects",
+      description: "Connect a folder, choose PHP, and configure local HTTPS.",
     },
     {
       label: "Upgrade in place",

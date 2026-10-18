@@ -55,8 +55,14 @@ Use Node.js 24 and pnpm 9.15.9. Run `pnpm lint`, `pnpm test`, and `pnpm build`, 
 
 The scripts resolve the real checkout directory when launched through a Windows junction such as `C:\xampp\htdocs`.
 
-Publish the matching app-repository documentation and `docs/images/services-current.png` before deploying this website. Hosted builds consume the app repository, not your local checkout. `DEVSTACKBOX_REF` can pin the Netlify docs clone to a branch or tag (default `main`); set the workflow checkout ref to the same revision for reproducible validation.
+Publish the matching app-repository documentation and approved `docs/images/` captures before deploying this website. Hosted builds consume the app repository, not your local checkout. `DEVSTACKBOX_REF` can pin the Netlify docs clone to a branch or tag (default `main`); set the workflow checkout ref to the same revision for reproducible validation.
 
 Optional `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` enables analytics only when configured; keep the website privacy notice aligned with the deployment. Never put GitHub tokens in public environment variables.
 
 See [LAUNCH-MEDIA.md](LAUNCH-MEDIA.md) for the approved media and remaining optional captures. Unreviewed captures are held locally under ignored `media-review/held/` and are excluded from the public site.
+
+## v0.1.12 website preparation
+
+New project, per-site PHP and HTTPS guidance syncs from the app docs. Preview captions distinguish internal build numbers from the next public release. Download URLs, dates, hashes and asset sizes remain sourced from published GitHub releases; never hard-code an unpublished asset as available.
+
+See LAUNCH-MEDIA.md for capture provenance. Use DEVSTACKBOX_ROOT to point preparation at the app checkout. Run npm test, npm run lint, npm run build, and npm run test:smoke against the production server before deployment.

@@ -32,6 +32,7 @@ export default async function DownloadPage() {
       <section className="grid gap-10 rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-card to-card p-6 sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">DevStackBox for Windows</p>
+          <p className="mt-3 text-sm text-muted-foreground">v0.1.12 is being prepared with per-project PHP and trusted HTTPS. The download below follows the published release.</p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Download the local PHP stack.</h1>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Install Apache, PHP, MySQL, and phpMyAdmin in one desktop application. Your projects and settings stay on your PC.

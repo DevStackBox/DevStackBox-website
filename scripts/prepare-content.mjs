@@ -88,7 +88,7 @@ if (fs.existsSync(imagesSrc)) {
   fs.rmSync(imagesDest, { recursive: true, force: true });
   fs.mkdirSync(imagesDest, { recursive: true });
   for (const file of fs.readdirSync(imagesSrc)) {
-    if (["services-current.png"].includes(file)) {
+    if (["services-current.png", "project-details-preview.jpg"].includes(file)) {
       fs.copyFileSync(path.join(imagesSrc, file), path.join(imagesDest, file));
     }
   }

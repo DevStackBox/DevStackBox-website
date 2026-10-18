@@ -5,7 +5,7 @@ import { SiteLogo } from "@/components/site-logo";
 import { GitHubIcon } from "@/components/github-icon";
 const groups = [
   { title: "Product", links: [["Download for Windows", "/download"], ["What's new", "/whats-new"], ["Releases", "/releases"], ["Compare alternatives", "/xampp-alternative"], ["Migrate from XAMPP", "/migrate-from-xampp"]] },
-  { title: "Resources", links: [["Documentation", "/docs"], ["Installation", "/docs/getting-started/installation"], ["Troubleshooting", "/docs/advanced/troubleshooting"], ["FAQ", "/docs/faq"], ["Roadmap", "/docs/roadmap"]] },
+  { title: "Resources", links: [["Documentation", "/docs"], ["Projects, PHP & HTTPS", "/docs/getting-started/projects"], ["Troubleshooting", "/docs/advanced/troubleshooting"], ["FAQ", "/docs/faq"], ["Roadmap", "/docs/roadmap"]] },
   { title: "Community", links: [["Contributing", siteConfig.githubUrl + "/blob/main/CONTRIBUTING.md"], ["Discussions", siteConfig.githubUrl + "/discussions"], ["Report an issue", siteConfig.githubUrl + "/issues"], ["Meet the project", "/community"], ["Code of Conduct", "/community#code-of-conduct"]] },
 ];
 export function SiteFooter() {
