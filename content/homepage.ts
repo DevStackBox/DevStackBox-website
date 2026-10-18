@@ -2,7 +2,7 @@ export const homepage = {
   hero: {
     title: "The free XAMPP alternative for Windows.",
     subtitle:
-      "Apache, MySQL, and PHP 8.3 in one installer. v0.1.12 adds project workspaces, per-site PHP, and trusted local HTTPS. MIT licensed, no site limits.",
+      "Apache, MySQL, and PHP 8.3 in one installer. Project workspaces, per-site PHP, and trusted local HTTPS in recent releases. MIT licensed, no site limits.",
     primaryCta: "Download for Windows",
     secondaryCta: "Read the Documentation",
     heroImage: "app/services-preview.jpg",

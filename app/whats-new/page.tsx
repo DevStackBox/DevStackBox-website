@@ -1,4 +1,5 @@
 import { ReleaseBody } from "@/components/release-body";
+import { ReleaseChecksum } from "@/components/release-checksum";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Download, ExternalLink } from "lucide-react";
@@ -53,7 +54,20 @@ export default async function WhatsNewPage() {
         </div>
       </header>
 
-      <section className="mt-10"><h2 className="mb-5 text-2xl font-semibold">Release highlights</h2>{release.body ? <ReleaseBody body={release.body} /> : <p className="text-muted-foreground">Read the full release on GitHub for details.</p>}</section>
+      <section className="mt-10">
+        <h2 className="mb-5 text-2xl font-semibold">Release highlights</h2>
+        {installer ? (
+          <ReleaseChecksum
+            release={release}
+            className="mb-6 rounded-xl border border-border bg-muted/30 p-4"
+          />
+        ) : null}
+        {release.body ? (
+          <ReleaseBody body={release.body} omitInstallerSha={Boolean(installer)} />
+        ) : (
+          <p className="text-muted-foreground">Read the full release on GitHub for details.</p>
+        )}
+      </section>
 
       <nav aria-label="Release links" className="mt-12 flex flex-wrap gap-4 border-t border-border pt-8 text-sm">
         <Link href="/changelog" className="text-primary hover:underline">

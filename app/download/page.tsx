@@ -20,6 +20,7 @@ export const metadata: Metadata = buildPageMetadata({
   title: "Download",
   description:
     "Download DevStackBox for Windows - free XAMPP alternative with PHP 8.3, MySQL 8.4 LTS, and PHP 8.5 on demand.",
+  ogImage: "/og/download.png",
 });
 
 export default async function DownloadPage() {
@@ -32,7 +33,11 @@ export default async function DownloadPage() {
       <section className="grid gap-10 rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-card to-card p-6 sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.14em] text-primary">DevStackBox for Windows</p>
-          <p className="mt-3 text-sm text-muted-foreground">v0.1.12 adds project workspaces, per-site PHP, and trusted local HTTPS. The button below installs the latest release from GitHub.</p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            {release
+              ? `${release.tag_name} is the latest stable release from GitHub.`
+              : "The button below installs the latest release from GitHub."}
+          </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Download the local PHP stack.</h1>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
             Install Apache, PHP, MySQL, and phpMyAdmin in one desktop application. Your projects and settings stay on your PC.
@@ -89,7 +94,11 @@ export default async function DownloadPage() {
           <StackIncludedPanel />
         </div>
         <p className="mt-6 text-sm text-muted-foreground">
-          The installer is not Windows Authenticode-signed, so SmartScreen may show an unknown publisher. Verify the file and its source before running it. See our{" "}
+          The installer is not Windows Authenticode-signed, so SmartScreen may show an unknown publisher. Verify the file and its source before running it. See{" "}
+          <Link href="/docs/faq#why-does-windows-smartscreen-warn-about-the-installer" className="link-primary">
+            SmartScreen FAQ
+          </Link>{" "}
+          and our{" "}
           <Link href="/security" className="link-primary">
             security page
           </Link>

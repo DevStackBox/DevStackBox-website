@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { laragonPrice, comparisonChecked } from "@/content/comparisons";
+import {
+  comparisonChecked,
+  devstackboxPhpHttps,
+  laragonPhpHttps,
+  laragonPrice,
+} from "@/content/comparisons";
 import { stackVersions } from "@/content/stack-versions";
 
 const rows = [
@@ -23,9 +28,9 @@ const rows = [
   },
   {
     label: "Per-site PHP & HTTPS",
-    devstackbox: "Installed runtimes per project; mkcert HTTPS (v0.1.12)",
+    devstackbox: devstackboxPhpHttps,
     xampp: "Manual config",
-    laragon: "Per-site PHP",
+    laragon: laragonPhpHttps,
   },
   {
     label: "Site limits",

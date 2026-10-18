@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { buildPageMetadata } from "@/lib/page-metadata";
-export const metadata = buildPageMetadata({path:"/migrate-from-xampp",title:"Migrate from XAMPP",description:"Move projects from XAMPP to DevStackBox on Windows. Copy htdocs with the in-app importer, then export and import databases separately."});
+export const metadata = buildPageMetadata({path:"/migrate-from-xampp",title:"Migrate from XAMPP",description:"Move projects from XAMPP to DevStackBox on Windows. Copy htdocs with the in-app importer, then export and import databases separately.",ogImage:"/og/migrate-from-xampp.png"});
 const steps = [
 ["Back up your current projects", "Copy your XAMPP htdocs folder to a separate backup. Export each database as SQL from XAMPP phpMyAdmin while its database service is running. Keep the originals until you have tested everything."],
 ["Install DevStackBox", "Install the Windows app. Stop XAMPP Apache and its database service before starting the equivalent DevStackBox services, so ports 80 and 3306 are available."],

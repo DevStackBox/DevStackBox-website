@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ReleaseBody } from "@/components/release-body";
+import { ReleaseChecksum } from "@/components/release-checksum";
 import {
   findWindowsInstaller,
   formatReleaseDate,
@@ -45,7 +46,22 @@ export default async function ReleasesPage() {
                 </time>
               </div>
               <p className="mt-1 text-sm text-muted-foreground">{r.tag_name} · {r.prerelease ? "Pre-release" : "Stable"}</p>
-              {r.body ? <details className="mt-5"><summary className="py-2 text-sm font-medium text-primary">Read release notes</summary><ReleaseBody body={r.body} className="mt-3" /></details> : null}
+              {installer ? (
+                <ReleaseChecksum
+                  release={r}
+                  className="mt-5 rounded-xl border border-border bg-muted/20 p-4"
+                />
+              ) : null}
+              {r.body ? (
+                <details className="mt-5">
+                  <summary className="py-2 text-sm font-medium text-primary">Read release notes</summary>
+                  <ReleaseBody
+                    body={r.body}
+                    className="mt-3"
+                    omitInstallerSha={Boolean(installer)}
+                  />
+                </details>
+              ) : null}
               <div className="mt-5 flex flex-wrap gap-4 text-sm">
                 <a
                   href={r.html_url}

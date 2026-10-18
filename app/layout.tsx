@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { siteConfig } from "@/content/homepage";
 import { buildPageMetadata } from "@/lib/page-metadata";
+import { getLatestRelease } from "@/lib/github";
 import { websiteSchemas } from "@/lib/structured-data";
 import "./globals.css";
 import { Geist } from "next/font/google";
@@ -26,15 +27,17 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const release = await getLatestRelease();
+  const softwareVersion = release?.tag_name?.replace(/^v/i, "");
   return (
     <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
       <body className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
-        <JsonLd data={websiteSchemas()} />
+        <JsonLd data={websiteSchemas({ softwareVersion })} />
         <Analytics />
         <RootProvider>
           <a href="#main-content" className="skip-link">Skip to content</a>

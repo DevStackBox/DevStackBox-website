@@ -32,13 +32,19 @@ const FAQ_ENTRIES = [
       "DevStackBox does not collect usage telemetry. Optional update checks and downloads make network requests.",
   },
   {
+    question: "Why does Windows SmartScreen warn about the installer?",
+    answer:
+      "The installer is not Windows Authenticode-signed, so SmartScreen may show an unknown publisher. Download from the official GitHub release and verify the SHA-256 checksum before running. Minisign signatures apply to in-app updates only.",
+  },
+  {
     question: "Can each project use a different PHP version?",
     answer:
-      "Yes for website requests in v0.1.12: download runtimes in PHP Versions, then pick an installed version per project or inherit the global default. Terminal sessions still use global PHP.",
+      "Yes for website requests: download runtimes in PHP Versions, then pick an installed version per project or inherit the global default. Terminal sessions still use global PHP.",
   },
 ];
 
-export function websiteSchemas() {
+export function websiteSchemas(options?: { softwareVersion?: string }) {
+  const softwareVersion = options?.softwareVersion;
   return [
     {
       "@context": "https://schema.org",
@@ -74,7 +80,7 @@ export function websiteSchemas() {
         "Import from XAMPP",
         "No telemetry",
       ],
-      softwareVersion: "0.1.12",
+      ...(softwareVersion ? { softwareVersion } : {}),
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       url: siteConfig.url,
       downloadUrl: `${siteConfig.url}/download`,
