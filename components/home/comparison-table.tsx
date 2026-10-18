@@ -22,6 +22,12 @@ const rows = [
     laragon: "MySQL / MariaDB",
   },
   {
+    label: "Per-site PHP & HTTPS",
+    devstackbox: "Installed runtimes per project; mkcert HTTPS (v0.1.12)",
+    xampp: "Manual config",
+    laragon: "Per-site PHP",
+  },
+  {
     label: "Site limits",
     devstackbox: "Unlimited",
     xampp: "Unlimited",

@@ -19,6 +19,13 @@ DevStackBox is a free MIT-licensed XAMPP alternative for Windows 10/11. One inst
 - MySQL: 8.4 LTS
 - Apache: 2.4.x
 
+## v0.1.12 highlights
+- Project workspaces with .test hostnames, document roots, aliases, and health checks
+- Per-project website PHP: choose a downloaded runtime or inherit the global default (HTTP and HTTPS match)
+- Trusted local HTTPS via bundled mkcert; repair and live verification
+- Connect folders outside www; upgrades stop owned services and preserve project data
+- Updater uses correct versioned installer/signature pairing with UTC timestamps
+
 ## FAQ (quick)
 Q: Is DevStackBox a XAMPP alternative?
 A: Yes - free for Windows with newer PHP and a desktop UI.

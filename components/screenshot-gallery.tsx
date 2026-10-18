@@ -9,7 +9,7 @@ export function ScreenshotGallery() {
     <section className="section-py mx-auto max-w-6xl px-4 sm:px-6">
       <h2 className="text-section mb-3 text-center">More screenshots</h2>
       <p className="text-body mx-auto mb-10 max-w-xl text-center">
-        Real captures of the upcoming v0.1.12 features. Some show internal test build v0.1.15; it is not a public release.
+        Project workspace, per-site PHP, and trusted HTTPS in DevStackBox v0.1.12.
       </p>
       <div
         className={

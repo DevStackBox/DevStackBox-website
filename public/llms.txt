@@ -11,8 +11,15 @@
 - Bundled: PHP 8.3, Apache 2.4, MySQL 8.4 LTS, phpMyAdmin
 - In app: PHP 8.1, 8.2, 8.4, 8.5 (latest supported branch: 8.5)
 
+## v0.1.12 highlights
+- Project details: hostname, folder, document root, aliases, health checks, HTTPS controls
+- Per-project website PHP (installed runtimes only; terminal still uses global PHP)
+- Trusted local HTTPS with bundled mkcert; localhost and per-project certificates
+- Connect existing folders outside www; safer in-place upgrades from v0.1.11
+
 ## Key docs
 - Installation: https://www.devstackbox.com/docs/getting-started/installation
+- Projects: https://www.devstackbox.com/docs/getting-started/projects
 - Upgrading: https://www.devstackbox.com/docs/getting-started/upgrading
 - FAQ: https://www.devstackbox.com/docs/faq
 

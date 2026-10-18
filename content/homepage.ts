@@ -2,7 +2,7 @@ export const homepage = {
   hero: {
     title: "The free XAMPP alternative for Windows.",
     subtitle:
-      "Apache, MySQL, and PHP 8.3 in one installer. Coming in v0.1.12: project workspaces, per-site PHP, and trusted local HTTPS. MIT licensed, no site limits.",
+      "Apache, MySQL, and PHP 8.3 in one installer. v0.1.12 adds project workspaces, per-site PHP, and trusted local HTTPS. MIT licensed, no site limits.",
     primaryCta: "Download for Windows",
     secondaryCta: "Read the Documentation",
     heroImage: "app/services-preview.jpg",
@@ -50,18 +50,18 @@ export const homepage = {
     "Drupal",
   ],
   featureShowcase: [
-    { title: "Your project workspace", description: "Internal preview of v0.1.12 features: a.test uses PHP 8.5 and trusted HTTPS. The app label is the internal test version, not a public release.", image: "app/projects-preview.jpg" },
+    { title: "Your project workspace", description: "Connect a .test hostname, pick an installed PHP runtime per site, and enable trusted HTTPS from project details.", image: "app/projects-preview.jpg" },
     { title: "Website health and HTTPS", description: "Real project details: HTTP 200 and trusted HTTPS checked separately, with folder and document-root settings below.", image: "app/project-details-preview.jpg" },
     {
       title: "Manage your stack",
       description:
-        "Internal preview: Apache running, MySQL 8.4.11 stopped, and PHP 8.3 ready. Internal v0.1.15 features are being prepared for public v0.1.12.",
+        "Start Apache and MySQL, inspect versions and ports, and open phpMyAdmin from one dashboard.",
       image: "app/services-preview.jpg",
     },
     {
       title: "Choose your PHP runtime",
       description:
-        "Download additional PHP versions in PHP settings. In v0.1.12, select an installed runtime per website; terminal sessions still use global PHP.",
+        "Download PHP 8.1–8.5 in PHP Versions, then select an installed runtime per website. Terminal sessions still use global PHP.",
       image: "app/php-85-download-1202x831.png",
     },
   ],

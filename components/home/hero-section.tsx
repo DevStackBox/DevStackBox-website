@@ -12,6 +12,6 @@ export function HeroSection({release}: {release: GitHubRelease | null}) {
       <p className="mt-5 text-xs leading-6 text-muted-foreground">Windows 10/11 · x64 · MIT licensed · No account required</p>
       {release && <p className="mt-3 text-xs text-muted-foreground"><Link href="/whats-new" className="font-medium text-primary">Latest release {release.tag_name}</Link> · {formatReleaseDate(release.published_at)}</p>}
     </div>
-    <div className="min-w-0 lg:-mr-12"><ProductImage src={resolveMarketingImage(homepage.hero.heroImage)} alt="DevStackBox Services showing Apache 2.4.65, MySQL 8.4.11, and bundled PHP 8.3.31" priority /><p className="mt-4 text-center text-xs text-muted-foreground">Real internal preview (v0.1.15). Next public release: v0.1.12.</p></div>
+    <div className="min-w-0 lg:-mr-12"><ProductImage src={resolveMarketingImage(homepage.hero.heroImage)} alt="DevStackBox Services showing Apache 2.4.65, MySQL 8.4.11, and bundled PHP 8.3.31" priority /></div>
   </div></section>;
 }

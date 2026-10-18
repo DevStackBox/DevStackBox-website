@@ -31,6 +31,11 @@ const FAQ_ENTRIES = [
     answer:
       "DevStackBox does not collect usage telemetry. Optional update checks and downloads make network requests.",
   },
+  {
+    question: "Can each project use a different PHP version?",
+    answer:
+      "Yes for website requests in v0.1.12: download runtimes in PHP Versions, then pick an installed version per project or inherit the global default. Terminal sessions still use global PHP.",
+  },
 ];
 
 export function websiteSchemas() {
@@ -59,13 +64,17 @@ export function websiteSchemas() {
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Windows 10, Windows 11",
       description:
-        "Free XAMPP alternative: PHP 8.3 bundled, PHP up to 8.5 in app, MySQL 8.4 LTS, Apache, phpMyAdmin.",
+        "Free XAMPP alternative: PHP 8.3 bundled, PHP up to 8.5 in app, MySQL 8.4 LTS, Apache, phpMyAdmin, project workspaces with per-site PHP and trusted HTTPS.",
       featureList: [
         "PHP 8.3 bundled; PHP 8.1–8.5 on demand",
+        "Per-project PHP for websites",
+        "Project workspaces (.test hostnames)",
+        "Trusted HTTPS (mkcert)",
         "MySQL 8.4 LTS",
         "Import from XAMPP",
         "No telemetry",
       ],
+      softwareVersion: "0.1.12",
       offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       url: siteConfig.url,
       downloadUrl: `${siteConfig.url}/download`,
