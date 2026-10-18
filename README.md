@@ -61,8 +61,8 @@ Optional `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` enables analytics only when configured; 
 
 See [LAUNCH-MEDIA.md](LAUNCH-MEDIA.md) for the approved media and remaining optional captures. Unreviewed captures are held locally under ignored `media-review/held/` and are excluded from the public site.
 
-## v0.1.12 website preparation
+## v0.1.12 website content
 
-New project, per-site PHP and HTTPS guidance syncs from the app docs. Preview captions distinguish internal build numbers from the next public release. Download URLs, dates, hashes and asset sizes remain sourced from published GitHub releases; never hard-code an unpublished asset as available.
+New project, per-site PHP and HTTPS guidance syncs from the app docs. The project, per-site PHP, and trusted HTTPS features are available in public v0.1.12. Screenshot capture history is recorded in LAUNCH-MEDIA.md. Download URLs, dates, hashes and asset sizes remain sourced from published GitHub releases; never hard-code an unpublished asset as available.
 
 See LAUNCH-MEDIA.md for capture provenance. Use DEVSTACKBOX_ROOT to point preparation at the app checkout. Run npm test, npm run lint, npm run build, and npm run test:smoke against the production server before deployment.
