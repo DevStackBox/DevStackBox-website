@@ -11,7 +11,7 @@ export function LatestReleaseBand({ release }: LatestReleaseBandProps) {
     <section className="mx-auto max-w-6xl px-5 py-12 sm:px-6">
       <div className="rounded-3xl border border-border bg-muted/30 p-6 sm:p-10">
         <p className="text-sm font-semibold text-primary">
-          New in {label}
+          Project workspaces
         </p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight">
           Each project, with its own PHP and HTTPS.

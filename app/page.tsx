@@ -1,5 +1,4 @@
 import { ScreenshotGallery } from "@/components/screenshot-gallery";
-import Link from "next/link";
 import { BottomDownloadCta } from "@/components/home/bottom-download-cta";
 import { CommunityCta } from "@/components/home/community-cta";
 import { DocsPreview } from "@/components/home/docs-preview";

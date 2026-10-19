@@ -60,6 +60,7 @@ export async function getReleases(limit = 20): Promise<GitHubRelease[]> {
   try {
     return await ghFetch<GitHubRelease[]>(
       `/repos/${GITHUB_REPO}/releases?per_page=${limit}`,
+      300,
     );
   } catch {
     console.warn("GitHub data unavailable; using the public release fallback.");
