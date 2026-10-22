@@ -2,10 +2,10 @@
 export const stackVersions = {
   php: {
     bundledBranch: "8.3",
-    bundledLabel: "8.3.31",
-    supportedBranches: ["8.5", "8.4", "8.3", "8.2", "8.1"] as const,
+    bundledLabel: "8.3.36",
+    supportedBranches: ["8.5", "8.4", "8.3", "8.2"] as const,
     latestSupportedBranch: "8.5",
-    onDemandBranches: ["8.5", "8.4", "8.2", "8.1"] as const,
+    onDemandBranches: ["8.5", "8.4", "8.2"] as const,
   },
   apache: { bundledLabel: "2.4.65" },
   mysql: { bundledLabel: "8.4.11 LTS" },
@@ -16,5 +16,5 @@ export const stackVersions = {
 export const positioning = {
   headline: "The free XAMPP alternative for Windows",
   subhead:
-    "Apache, MySQL, and PHP 8.3 in one installer. Add PHP 8.1–8.5 from the app. MIT licensed. No site limits.",
+    "Apache, MySQL, and PHP 8.3 in one installer. Add PHP 8.2–8.5 from the app. MIT licensed. No site limits.",
 } as const;

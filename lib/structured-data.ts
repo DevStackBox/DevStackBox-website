@@ -72,7 +72,7 @@ export function websiteSchemas(options?: { softwareVersion?: string }) {
       description:
         "Free XAMPP alternative: PHP 8.3 bundled, PHP up to 8.5 in app, MySQL 8.4 LTS, Apache, phpMyAdmin, project workspaces with per-site PHP and trusted HTTPS.",
       featureList: [
-        "PHP 8.3 bundled; PHP 8.1–8.5 on demand",
+        "PHP 8.3 bundled; PHP 8.2–8.5 on demand",
         "Per-project PHP for websites",
         "Project workspaces (.test hostnames)",
         "Trusted HTTPS (mkcert)",

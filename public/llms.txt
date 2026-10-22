@@ -1,5 +1,5 @@
 # DevStackBox
-> Free XAMPP alternative for Windows - Apache, MySQL 8.4 LTS, PHP 8.3 in the installer, PHP 8.1–8.5 in the app.
+> Free XAMPP alternative for Windows - Apache, MySQL 8.4 LTS, PHP 8.3 in the installer, PHP 8.2–8.5 in the app.
 
 ## Product
 - Download: https://www.devstackbox.com/download
@@ -9,7 +9,7 @@
 
 ## Stack
 - Bundled: PHP 8.3, Apache 2.4, MySQL 8.4 LTS, phpMyAdmin
-- In app: PHP 8.1, 8.2, 8.4, 8.5 (latest supported branch: 8.5)
+- In app: PHP 8.2, 8.4, 8.5 (latest supported branch: 8.5)
 
 ## v0.1.12 highlights
 - Project details: hostname, folder, document root, aliases, health checks, HTTPS controls

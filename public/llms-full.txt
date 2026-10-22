@@ -1,7 +1,7 @@
 # DevStackBox - extended reference for AI systems
 
 ## Product summary
-DevStackBox is a free MIT-licensed XAMPP alternative for Windows 10/11. One installer includes Apache, MySQL 8.4 LTS, phpMyAdmin, and PHP 8.3. PHP 8.1, 8.2, 8.4, and 8.5 are available inside the app (latest supported branch: 8.5). No telemetry. Offline-friendly after install.
+DevStackBox is a free MIT-licensed XAMPP alternative for Windows 10/11. One installer includes Apache, MySQL 8.4 LTS, phpMyAdmin, and PHP 8.3. PHP 8.2, 8.4, and 8.5 are available inside the app (latest supported branch: 8.5). No telemetry. Offline-friendly after install.
 
 - Website: https://www.devstackbox.com
 - Download: https://www.devstackbox.com/download
@@ -15,7 +15,7 @@ DevStackBox is a free MIT-licensed XAMPP alternative for Windows 10/11. One inst
 
 ## Stack versions (marketing)
 - Bundled PHP: 8.3
-- Supported PHP in app: 8.1 through 8.5
+- Supported PHP in app: 8.2 through 8.5
 - MySQL: 8.4 LTS
 - Apache: 2.4.x
 

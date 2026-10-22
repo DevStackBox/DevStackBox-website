@@ -61,8 +61,8 @@ export const homepage = {
     {
       title: "Choose your PHP runtime",
       description:
-        "Download PHP 8.1–8.5 in PHP Versions, then select an installed runtime per website. Terminal sessions still use global PHP.",
-      image: "app/php-85-download-1202x831.png",
+        "See exact PHP patch versions, update installed branches, and choose PHP 8.2–8.5 per website. PHP 8.1 has been removed in v0.1.14. Terminal sessions use global PHP.",
+      image: "app/project-php-preview.jpg",
     },
   ],
   docLinks: [

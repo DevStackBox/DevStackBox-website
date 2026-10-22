@@ -63,6 +63,6 @@ See [LAUNCH-MEDIA.md](LAUNCH-MEDIA.md) for the approved media and remaining opti
 
 ## Release content
 
-New project, per-site PHP and HTTPS guidance syncs from the app docs. The project, per-site PHP, and trusted HTTPS features are available in public v0.1.12. v0.1.13 adds project error-log access and configuration recovery safeguards. Screenshot capture history is recorded in LAUNCH-MEDIA.md. Download URLs, dates, hashes and asset sizes remain sourced from published GitHub releases; never hard-code an unpublished asset as available.
+New project, per-site PHP and HTTPS guidance syncs from the app docs. The project, per-site PHP, and trusted HTTPS features are available in public v0.1.12. v0.1.14 source updates bundle PHP 8.3.36, add verified patch upgrades and exact version labels, and remove PHP 8.1. v0.1.13 introduced project error-log access and configuration recovery safeguards. Publish the website updates alongside the final v0.1.14 release. Screenshot capture history is recorded in LAUNCH-MEDIA.md. Download URLs, dates, hashes and asset sizes remain sourced from published GitHub releases; never hard-code an unpublished asset as available.
 
 See LAUNCH-MEDIA.md for capture provenance. Use DEVSTACKBOX_ROOT to point preparation at the app checkout. Run npm test, npm run lint, npm run build, and npm run test:smoke against the production server before deployment.
