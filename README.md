@@ -53,7 +53,7 @@ Netlify clones [DevStackBox](https://github.com/DevStackBox/DevStackBox) during 
 
 Use Node.js 24 and pnpm 9.15.9. Run `pnpm lint`, `pnpm test`, and `pnpm build`, then run `pnpm start` and `pnpm test:smoke` in a second terminal. The smoke check verifies all content routes, local links and anchors, public assets, search, sitemap uniqueness, and the 404 response. Set `SMOKE_BASE_URL` to check another deployment.
 
-The scripts resolve the real checkout directory when launched through a Windows junction such as `C:\xampp\htdocs`.
+The scripts resolve the real checkout directory when the website folder is opened through a Windows directory junction.
 
 Publish the matching app-repository documentation and approved `docs/images/` captures before deploying this website. Hosted builds consume the app repository, not your local checkout. `DEVSTACKBOX_REF` can pin the Netlify docs clone to a branch or tag (default `main`); set the workflow checkout ref to the same revision for reproducible validation.
 
@@ -63,6 +63,8 @@ See [LAUNCH-MEDIA.md](LAUNCH-MEDIA.md) for the approved media and remaining opti
 
 ## Release content
 
-New project, per-site PHP and HTTPS guidance syncs from the app docs. The project, per-site PHP, and trusted HTTPS features are available in public v0.1.12. v0.1.14 source updates bundle PHP 8.3.36, add verified patch upgrades and exact version labels, and remove PHP 8.1. v0.1.13 introduced project error-log access and configuration recovery safeguards. Publish the website updates alongside each public release (currently v0.1.16). Screenshot capture history is recorded in LAUNCH-MEDIA.md. Download URLs, dates, hashes and asset sizes remain sourced from published GitHub releases; never hard-code an unpublished asset as available.
+New project, per-site PHP and HTTPS guidance syncs from the app docs. The project, per-site PHP, and trusted HTTPS features are available in public v0.1.12. v0.1.14 source updates bundle PHP 8.3.36, add verified patch upgrades and exact version labels, and remove PHP 8.1. v0.1.13 introduced project error-log access and configuration recovery safeguards. Publish the website updates alongside each public release. Screenshot capture history is recorded in LAUNCH-MEDIA.md. Download URLs, dates, hashes and asset sizes remain sourced from published GitHub releases; never hard-code an unpublished asset as available.
 
-See LAUNCH-MEDIA.md for capture provenance. Use DEVSTACKBOX_ROOT to point preparation at the app checkout. Run npm test, npm run lint, npm run build, and npm run test:smoke against the production server before deployment.
+See LAUNCH-MEDIA.md for capture provenance. Use `DEVSTACKBOX_ROOT` to point preparation at the app checkout. Run `pnpm lint`, `pnpm test`, `pnpm build`, and `pnpm test:smoke` against the production server before deployment.
+
+Before each deploy after an app release, re-run `node scripts/prepare-content.mjs` so docs and changelog match the app repository revision pinned by `DEVSTACKBOX_REF` (Netlify) or your local clone.

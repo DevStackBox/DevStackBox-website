@@ -11,6 +11,10 @@
 - Bundled: PHP 8.3, Apache 2.4, MySQL 8.4 LTS, phpMyAdmin
 - In app: PHP 8.2, 8.4, 8.5 (latest supported branch: 8.5)
 
+## v0.1.17 highlights
+- Apache ignores ancestor .htaccess files by default so Laravel `public/` docroots work without parent `<IfModule not allowed here` errors
+- Additive Apache migration with syntax check and timestamped backup; public rewrites still enabled for HTTP and HTTPS
+
 ## v0.1.12 highlights
 - Project details: hostname, folder, document root, aliases, health checks, HTTPS controls
 - Per-project website PHP (installed runtimes only; terminal still uses global PHP)
