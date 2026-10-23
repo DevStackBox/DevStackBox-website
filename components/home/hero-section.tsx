@@ -12,6 +12,6 @@ export function HeroSection({release, stats}: {release: GitHubRelease | null; st
       <p className="mt-5 text-xs leading-6 text-muted-foreground">Windows 10/11 · x64 · MIT licensed · No account required</p>
       {release && <p className="mt-3 text-xs text-muted-foreground"><Link href="/whats-new" className="font-medium text-primary">Latest release {release.tag_name}</Link> · {formatReleaseDate(release.published_at)}</p>}
     </div>
-    <div className="min-w-0 lg:-mr-12"><ProductImage src={resolveMarketingImage(homepage.hero.heroImage)} alt="DevStackBox Services in an earlier release, showing Apache, MySQL and PHP controls" priority /><p className="mt-3 text-xs text-muted-foreground">Earlier release shown. v0.1.14 bundles PHP 8.3.36 and adds verified PHP patch upgrades.</p></div>
+    <div className="min-w-0 lg:-mr-12"><ProductImage src={resolveMarketingImage(homepage.hero.heroImage)} alt="DevStackBox v0.1.17 Services showing Apache, MySQL and PHP controls" width={1920} height={1032} priority /><p className="mt-3 text-xs text-muted-foreground">Installed v0.1.17, captured at 1920 × 1032. Enlarge to inspect the interface or open the original image.</p></div>
   </div></section>;
 }

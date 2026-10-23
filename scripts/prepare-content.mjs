@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { validateScreenshots, validateScreenshotReferences, syncScreenshots } from "./screenshot-assets.mjs";
 import { transformDoc } from "./docs-transform.mjs";
 import path from "node:path";
 import { execFileSync } from "node:child_process";
@@ -14,8 +15,23 @@ const docsSrc = path.join(devstackboxRoot, "docs");
 const docsDest = path.join(websiteRoot, "content", "docs");
 const rootMarkdownDest = path.join(websiteRoot, "content", "root-markdown");
 const imagesSrc = path.join(docsSrc, "images");
-const imagesDest = path.join(websiteRoot, "public", "docs-images");
 const docsMetadata = {};
+const screenshotManifest = JSON.parse(fs.readFileSync(path.join(imagesSrc, "screenshots.json"), "utf8"));
+const approvedScreenshots = validateScreenshots(imagesSrc, screenshotManifest);
+validateScreenshotReferences(docsSrc, approvedScreenshots);
+function resetGeneratedDirectory(target) {
+  const absolute = path.resolve(target);
+  if (!absolute.startsWith(websiteRoot + path.sep)) throw new Error("Generated directory escaped website root");
+  if (fs.existsSync(absolute) && !fs.realpathSync(absolute).startsWith(websiteRoot + path.sep)) throw new Error("Generated directory points outside website root");
+  fs.rmSync(absolute, { recursive: true, force: true });
+}
+let sourceRevision = null;
+let shallowHistory = true;
+try {
+  sourceRevision = execFileSync("git", ["rev-parse", "HEAD"], {cwd: devstackboxRoot, encoding: "utf8"}).trim();
+  shallowHistory = execFileSync("git", ["rev-parse", "--is-shallow-repository"], {cwd: devstackboxRoot, encoding: "utf8"}).trim() === "true";
+} catch { /* An exported source tree has no Git metadata. */ }
+fs.writeFileSync(path.join(websiteRoot, "content", "docs-source.json"), JSON.stringify({revision: sourceRevision, ref: process.env.DEVSTACKBOX_REF ?? "main", shallowHistory}, null, 2) + "\n");
 
 const SKIP_DIRS = new Set(["archive", "images", "assets", "standards"]);
 
@@ -42,7 +58,7 @@ function copyMdx(srcDir, destDir, relative = "") {
           ["log", "-1", "--format=%cI", "--", sourcePath],
           { cwd: devstackboxRoot, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] },
         ).trim();
-        docsMetadata[`docs/${rel}`] = modifiedAt || null;
+        docsMetadata[`docs/${rel}`] = shallowHistory ? null : modifiedAt || null;
       } catch {
         docsMetadata[`docs/${rel}`] = null;
       }
@@ -63,7 +79,7 @@ if (!fs.existsSync(docsSrc)) {
   process.exit(1);
 }
 
-fs.rmSync(docsDest, { recursive: true, force: true });
+resetGeneratedDirectory(docsDest);
 copyMdx(docsSrc, docsDest);
 console.log("Synced MDX → content/docs from", devstackboxRoot);
 fs.writeFileSync(
@@ -72,7 +88,7 @@ fs.writeFileSync(
 );
 console.log("Synced docs modification dates");
 
-fs.rmSync(rootMarkdownDest, { recursive: true, force: true });
+resetGeneratedDirectory(rootMarkdownDest);
 fs.mkdirSync(rootMarkdownDest, { recursive: true });
 for (const filename of ["CHANGELOG.md", "CODE_OF_CONDUCT.md", "LICENSE", "PRIVACY.md", "SECURITY.md"]) {
   const srcPath = path.join(devstackboxRoot, filename);
@@ -84,18 +100,8 @@ for (const filename of ["CHANGELOG.md", "CODE_OF_CONDUCT.md", "LICENSE", "PRIVAC
 }
 console.log("Synced root Markdown pages");
 
-if (fs.existsSync(imagesSrc)) {
-  fs.rmSync(imagesDest, { recursive: true, force: true });
-  fs.mkdirSync(imagesDest, { recursive: true });
-  for (const file of fs.readdirSync(imagesSrc)) {
-    if (["services-current.png", "project-details-preview.jpg"].includes(file)) {
-      fs.copyFileSync(path.join(imagesSrc, file), path.join(imagesDest, file));
-    }
-  }
-  console.log("Synced docs/images → public/docs-images");
-} else {
-  fs.mkdirSync(imagesDest, { recursive: true });
-}
+syncScreenshots(websiteRoot, approvedScreenshots);
+console.log(`Synced ${approvedScreenshots.length} approved screenshots with verified dimensions and hashes`);
 
 const logoSrc = path.join(imagesSrc, "logo");
 const brandDest = path.join(websiteRoot, "public", "brand");
@@ -107,7 +113,7 @@ function syncLogoAssets() {
     return;
   }
 
-  fs.rmSync(brandDest, { recursive: true, force: true });
+  resetGeneratedDirectory(brandDest);
   fs.mkdirSync(brandDest, { recursive: true });
 
   for (const file of fs.readdirSync(logoSrc)) {

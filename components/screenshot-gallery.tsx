@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ProductImage } from "@/components/product-image";
 import { listGalleryImages } from "@/lib/marketing-images";
 
 export function ScreenshotGallery() {
@@ -23,17 +23,11 @@ export function ScreenshotGallery() {
             key={screenshot.src}
             className="overflow-hidden rounded-xl border border-border bg-muted/20 shadow-md ring-1 ring-border/50"
           >
-            <Image
-              src={screenshot.src}
-              alt={screenshot.alt}
-              width={1202}
-              height={831}
-              sizes="(max-width: 640px) 100vw, 50vw"
-              className="h-auto w-full"
-            />
+            <ProductImage src={screenshot.src} alt={screenshot.alt} width={screenshot.width} height={screenshot.height} />
             <div className="p-4">
               <h3 className="font-semibold">{screenshot.title}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{screenshot.description}</p>
+              <p className="mt-2 text-xs text-muted-foreground">{screenshot.caption}</p>
             </div>
           </div>
         ))}
