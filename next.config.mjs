@@ -16,7 +16,9 @@ const nextConfig = {
       {key: "Referrer-Policy", value: "strict-origin-when-cross-origin"},
       {key: "X-Frame-Options", value: "DENY"},
       {key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()"},
-    ]}];
+    ]}, ...["/DEVSTACKBOX.md", "/llms.txt", "/llms-full.txt"].map(source => ({source, headers: [
+      {key: "Content-Type", value: "text/plain; charset=utf-8"},
+    ]}))];
   },
   async redirects() {
     return [

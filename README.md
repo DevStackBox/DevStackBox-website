@@ -6,6 +6,8 @@ Marketing site and documentation for [DevStackBox](https://www.devstackbox.com),
 
 Documentation content lives in the [DevStackBox](https://github.com/DevStackBox/DevStackBox) app repository and is consumed at build time.
 
+The app repository's `DEVSTACKBOX.md` is copied unchanged to `/DEVSTACKBOX.md`, `/llms.txt` and the existing `/llms-full.txt` URL. The homepage and docs link to it as portable context for AI coding tools. Edit the canonical app file, not the generated public copies. Publish the app repository revision containing that file before building the website against it; the hosted sparse checkout includes it.
+
 ## Local development
 
 Clone both repositories side by side:

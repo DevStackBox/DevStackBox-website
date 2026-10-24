@@ -16,6 +16,10 @@ const docsDest = path.join(websiteRoot, "content", "docs");
 const rootMarkdownDest = path.join(websiteRoot, "content", "root-markdown");
 const imagesSrc = path.join(docsSrc, "images");
 const docsMetadata = {};
+const aiGuide = fs.readFileSync(path.join(devstackboxRoot, "DEVSTACKBOX.md"));
+if (!aiGuide.toString("utf8").startsWith("# DevStackBox guide for AI coding tools")) {
+  throw new Error("Required DevStackBox AI guide is empty or invalid");
+}
 const screenshotManifest = JSON.parse(fs.readFileSync(path.join(imagesSrc, "screenshots.json"), "utf8"));
 const approvedScreenshots = validateScreenshots(imagesSrc, screenshotManifest);
 validateScreenshotReferences(docsSrc, approvedScreenshots);
@@ -99,6 +103,12 @@ for (const filename of ["CHANGELOG.md", "CODE_OF_CONDUCT.md", "LICENSE", "PRIVAC
   }
 }
 console.log("Synced root Markdown pages");
+
+fs.mkdirSync(path.join(websiteRoot, "public"), { recursive: true });
+for (const filename of ["DEVSTACKBOX.md", "llms.txt", "llms-full.txt"]) {
+  fs.writeFileSync(path.join(websiteRoot, "public", filename), aiGuide);
+}
+console.log("Synced canonical AI guide and both existing llms URLs");
 
 syncScreenshots(websiteRoot, approvedScreenshots);
 console.log(`Synced ${approvedScreenshots.length} approved screenshots with verified dimensions and hashes`);

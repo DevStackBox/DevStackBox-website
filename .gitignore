@@ -22,6 +22,9 @@
 # Generated content from DevStackBox repo
 /content/docs
 /content/docs-meta.json
+/public/DEVSTACKBOX.md
+/public/llms.txt
+/public/llms-full.txt
 /content/screenshots.json
 /content/docs-source.json
 /content/root-markdown/

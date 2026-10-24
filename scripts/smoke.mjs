@@ -5,6 +5,16 @@ const base = process.env.SMOKE_BASE_URL ?? "http://localhost:3000";
 function walk(dir) { return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]); }
 const routes = ["/","/download","/releases","/changelog","/community","/privacy","/security","/license","/whats-new","/xampp-alternative","/migrate-from-xampp","/vs/laragon","/vs/herd",...walk("content/docs").filter(f=>f.endsWith(".mdx")).map(f=>"/docs/"+path.relative("content/docs",f).replaceAll("\\","/").replace(/(?:\/)?index\.mdx$|\.mdx$/g,"")).map(p=>p.replace(/\/$/,""))];
 const htmlByPath = new Map();
+const guideResponse = await fetch(base + "/DEVSTACKBOX.md");
+assert.equal(guideResponse.status, 200, "AI guide URL");
+assert.match(guideResponse.headers.get("content-type") ?? "", /^text\/plain/);
+const guide = await guideResponse.text();
+assert.equal(guide, fs.readFileSync("public/DEVSTACKBOX.md", "utf8"), "served guide matches prepared source");
+for (const alias of ["/llms.txt", "/llms-full.txt"]) {
+  const discoveryResponse = await fetch(base + alias);
+  assert.equal(discoveryResponse.status, 200, alias);
+  assert.equal(await discoveryResponse.text(), guide, "one canonical guide at " + alias);
+}
 for (const route of routes) {
   const response = await fetch(base+route); assert.equal(response.status,200,route);
   const html=await response.text(); htmlByPath.set(route,html);
@@ -13,6 +23,7 @@ for (const route of routes) {
   assert.ok(!/Content not found\.|Laragon Pro adds|Free tier limits/.test(html),route+" stale content");
 }
 const failures=[];
+assert.ok(htmlByPath.get("/").includes('href="/DEVSTACKBOX.md"'), "homepage links to AI guide");
 const assets = new Set();
 for(const [route,html] of htmlByPath) {
   for(const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
