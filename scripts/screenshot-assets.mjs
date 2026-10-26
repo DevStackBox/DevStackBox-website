@@ -45,6 +45,8 @@ export function validateScreenshots(imageRoot, manifest) {
     const bytes = fs.readFileSync(source);
     const dimensions = imageDimensions(bytes);
     if (dimensions.width !== item.width || dimensions.height !== item.height) throw new Error(`Wrong native dimensions: ${item.id}`);
+    if (manifest.documentationVersion && item.version !== manifest.documentationVersion) throw new Error(`Outdated screenshot version: ${item.id}`);
+    if (manifest.minimumWidth && dimensions.width < manifest.minimumWidth) throw new Error(`Screenshot below required native width: ${item.id}`);
     if (!((dimensions.format === "png" && /\.png$/i.test(item.file)) || (dimensions.format === "jpeg" && /\.jpe?g$/i.test(item.file)))) throw new Error("Screenshot extension differs from bytes");
     if (!Array.isArray(item.publicPaths) || !item.publicPaths.length) throw new Error("Screenshot needs public destinations");
     for (const url of item.publicPaths) {

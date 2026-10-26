@@ -1,32 +1,9 @@
 # Reviewed website media
 
-## Current capture
+The app repository's docs/images/screenshots.json is the source of truth. Current approved set: 27 native 1920 × 1032 captures of the v0.1.19 production build, taken 26 October 2026 with isolated demo profiles. No upscaling, label editing or recompression.
 
-public/screenshots/app/services-v0.1.17-hd.jpg shows the installed public v0.1.17 Services page, captured on 2026-10-23 at native **1920 × 1032**. The capture tool supplied JPEG; the original bytes are retained without resizing or recompression. It replaces the older Services image in the hero and gallery. A matching copy in the app repository's docs/images/ is used on the documentation index.
+Homepage hero: /screenshots/v0.1.19/services.jpg. Project feature: /screenshots/v0.1.19/project-settings.jpg. Gallery entries use the same approved captures as the guides. Old 1202-pixel and v0.1.17/v0.1.18 screenshots are superseded.
 
-This capture represents the released app. The pending UI wording changes will appear only in a future app build; do not label this image as showing those changes.
+ProductImage preserves aspect ratio, serves the original bytes and offers enlarge/open-original controls. Content preparation checks native dimensions, baseline version, references and copy hashes. Release availability remains sourced from GitHub releases, independently of screenshot provenance.
 
-## Older captures and remaining retakes
-
-| Existing file | Scene | Status |
-| --- | --- | --- |
-| projects-preview.jpg | Connected projects | Earlier release, 1202 × 831; native HD retake pending |
-| project-details-preview.jpg | Project health and document root | Earlier release, 1202 × 831; native HD retake pending |
-| project-php-preview.jpg | Per-site PHP selector | Earlier release, 1202 × 831; native HD retake pending |
-| services-preview.jpg | Services | Superseded by the v0.1.17 HD capture; retained for older references |
-| php-85-download-1202x831.png | PHP download | Historical capture; not automatically included in the gallery |
-
-Use a clean demonstration project outside www for future project captures. Do not publish private paths, credentials, logs or unrelated windows. Do not edit version labels or health results into a screenshot. Capture the final running build and record its actual version; do not manufacture a new release for documentation work.
-
-## Quality and rendering
-
-- Prefer native PNG captures at least 1920 pixels wide when available. Never upscale a smaller image or describe JPEG converted to PNG as lossless.
-- Review original files at 100% and at their rendered size. ProductImage serves original files without Next.js lossy image optimization, preserves aspect ratio and caps the enlarged dialog at the source width.
-- Every gallery image can be enlarged and opened as an original. Historical screenshots remain labeled. This improves access to the available detail but does not restore detail missing from old captures.
-- Update native width and height alongside an asset when replacing it.
-
-## Open Graph and gallery
-
-Social preview assets live under public/og/ and are selected through ogImage in buildPageMetadata.
-
-The screenshot gallery uses the reviewed entries in content/homepage.ts through listGalleryImages(). It does not automatically publish new files. Unreviewed captures belong in ignored media-review/held/.
+Keep source-history images out of public assets. Social previews under public/og are branding assets, not substitutes for app screenshots.

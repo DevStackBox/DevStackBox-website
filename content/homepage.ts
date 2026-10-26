@@ -5,7 +5,7 @@ export const homepage = {
       "Apache, MySQL, and PHP 8.3 in one installer. Connect projects from accessible local folders, choose PHP per site, and use trusted local HTTPS. MIT licensed, no site limits.",
     primaryCta: "Download for Windows",
     secondaryCta: "Read the Documentation",
-    heroImage: "app/services-v0.1.17-hd.jpg",
+    heroImage: "v0.1.19/services.jpg",
     trustBadges: ["MIT Licensed", "Windows 10/11", "No telemetry"],
     stackBadges: ["PHP 8.3 bundled", "PHP 8.5 in app", "MySQL 8.4.11", "Apache 2.4"],
   },
@@ -50,13 +50,13 @@ export const homepage = {
     "Drupal",
   ],
   featureShowcase: [
-    { title: "Your project workspace", description: "Connect a .test hostname, pick an installed PHP runtime per site, and enable trusted HTTPS from project details.", image: "source-preview/project-php-2026-10-23.jpg" },
-    { title: "Website health and HTTPS", description: "Inspect website response and HTTPS separately. This source preview shows a disabled demonstration site and its folder settings.", image: "source-preview/project-details-2026-10-23.jpg" },
+    { title: "Your project workspace", description: "Connect a .test hostname, pick an installed PHP runtime per site, and enable trusted HTTPS from project details.", image: "v0.1.19/project-settings.jpg" },
+    { title: "Website health and HTTPS", description: "Inspect website response and HTTPS separately. This demonstration profile shows a disabled demonstration site and its folder settings.", image: "v0.1.19/project-details.jpg" },
     {
       title: "Manage your stack",
       description:
         "Start Apache and MySQL, inspect versions and ports, and open phpMyAdmin from one dashboard.",
-        image: "app/services-v0.1.17-hd.jpg",
+        image: "v0.1.19/services.jpg",
         width: 1920,
         height: 1032,
     },
@@ -64,7 +64,7 @@ export const homepage = {
       title: "Choose your PHP runtime",
       description:
         "See exact PHP patch versions, update installed branches, and choose PHP 8.2–8.5 per website. PHP 8.1 has been removed in v0.1.14. Terminal sessions use global PHP.",
-      image: "source-preview/php-versions-2026-10-23.jpg",
+      image: "php-default-v0.1.19-hd.jpg",
     },
   ],
   docLinks: [

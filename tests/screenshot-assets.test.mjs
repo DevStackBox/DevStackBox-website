@@ -17,6 +17,8 @@ test("approved assets retain bytes and native dimensions across destinations", (
     fs.mkdirSync(path.join(root,"content")); syncScreenshots(root,approved);
     assert.deepEqual(fs.readFileSync(path.join(root,"public/screenshots/pixel.png")), bytes);
     assert.throws(()=>validateScreenshots(images,{...manifest,screenshots:[{...item,width:2}]}),/dimensions/);
+    assert.throws(()=>validateScreenshots(images,{...manifest,documentationVersion:"v0.1.19"}),/Outdated screenshot/);
+    assert.throws(()=>validateScreenshots(images,{...manifest,minimumWidth:1920}),/native width/);
     assert.throws(()=>validateScreenshots(images,{...manifest,screenshots:[{...item,file:"missing.png"}]}));
     assert.throws(()=>validateScreenshots(images,{...manifest,screenshots:[{...item,file:"../secret.png"}]}),/escapes/);
     assert.throws(()=>validateScreenshots(images,{...manifest,screenshots:[{...item,publicPaths:["/docs-images/../outside.png"]}]}),/Invalid/);
