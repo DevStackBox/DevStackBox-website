@@ -50,3 +50,6 @@ devstackbox/
 # Private originals held for media review
 /media-review/held/
 /artifacts/
+
+# Local implementation handoff
+/IMPLEMENTATION-REPORT.md
