@@ -69,6 +69,11 @@ export const homepage = {
   ],
   docLinks: [
     {
+      label: "Run two PHP versions side by side",
+      href: "/docs/getting-started/multiple-php-versions-windows",
+      description: "Check PHP in two local sites and compare it with your Windows terminal.",
+    },
+    {
       label: "Install DevStackBox",
       href: "/docs/getting-started/installation",
       description: "Download the Windows installer and get running.",

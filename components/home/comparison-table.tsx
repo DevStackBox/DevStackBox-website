@@ -4,6 +4,8 @@ import {
   devstackboxPhpHttps,
   laragonPhpHttps,
   laragonPrice,
+  xamppDatabase,
+  xamppWindowsPhp,
 } from "@/content/comparisons";
 import { stackVersions } from "@/content/stack-versions";
 
@@ -17,13 +19,13 @@ const rows = [
   {
     label: "PHP in installer",
     devstackbox: `${stackVersions.php.bundledLabel} (+ up to ${stackVersions.php.latestSupportedBranch} in app)`,
-    xampp: stackVersions.xamppWindowsPhp,
+    xampp: xamppWindowsPhp,
     laragon: "Varies",
   },
   {
     label: "Database",
     devstackbox: stackVersions.mysql.bundledLabel,
-    xampp: "MariaDB 10.4.32",
+    xampp: xamppDatabase,
     laragon: "MySQL / MariaDB",
   },
   {
@@ -51,8 +53,7 @@ export function ComparisonTable() {
     <section className="section-py mx-auto max-w-6xl px-4 sm:px-6">
       <h2 className="text-section mb-3 text-center">DevStackBox vs XAMPP vs Laragon</h2>
       <p className="text-body mx-auto mb-8 max-w-xl text-center text-muted-foreground">
-        XAMPP for Windows still ships older PHP. DevStackBox gives you PHP {stackVersions.php.bundledBranch}{" "}
-        immediately and {stackVersions.php.latestSupportedBranch} when you need it.
+        Compare how each Windows environment handles PHP versions, local HTTPS and databases.
       </p>
       <div role="region" aria-label="Local stack comparison" tabIndex={0} className="overflow-x-auto rounded-2xl border border-border">
         <table className="w-full min-w-[640px] text-left text-sm">
@@ -85,7 +86,7 @@ export function ComparisonTable() {
           </tbody>
         </table>
       </div>
-      <p className="mt-4 text-xs leading-6 text-muted-foreground">Checked {comparisonChecked}. Laragon commercial prices are for one device. Sources: <a href="https://www.apachefriends.org/download.html" className="link-primary">XAMPP downloads</a> · <a href="https://laragon.org/pricing" className="link-primary">Laragon pricing</a>.</p>
+      <p className="mt-4 text-xs leading-6 text-muted-foreground">Checked {comparisonChecked}. <a href="https://www.apachefriends.org/download.html" className="link-primary">XAMPP downloads</a> · <a href="https://laragon.org/pricing" className="link-primary">Laragon pricing</a> · <a href="https://laragon.org/docs/faq" className="link-primary">Laragon features</a>.</p>
       <div className="mt-5 flex flex-wrap gap-5 text-sm"><Link href="/xampp-alternative" className="link-primary">Compare XAMPP →</Link><Link href="/vs/laragon" className="link-primary">Compare Laragon →</Link><Link href="/vs/herd" className="link-primary">Compare Herd →</Link></div>
     </section>
   );

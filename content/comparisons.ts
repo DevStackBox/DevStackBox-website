@@ -1,9 +1,10 @@
-export const comparisonChecked = "October 18, 2026";
-export const laragonPrice = "Free non-commercial (reminder popup), $49/yr or $149 lifetime commercial";
-/** Laragon switches PHP globally for all sites, not per vhost. */
-export const laragonPhpHttps = "Global PHP switch (all sites); manual HTTPS";
+export const comparisonChecked = "November 19, 2026";
+export const laragonPrice = "Free for non-commercial use with reminders. Commercial licenses available.";
+export const laragonPhpHttps = "Switchable PHP versions and Auto SSL";
 export const devstackboxPhpHttps =
-  "Installed runtimes per project; mkcert HTTPS";
+  "Per-project PHP and local HTTPS with mkcert";
+export const xamppWindowsPhp = "Separate Windows packages for PHP 8.3, 8.4 and 8.5";
+export const xamppDatabase = "MariaDB 10.11";
 export const comparisonSources = [
   {label: "XAMPP downloads", href: "https://www.apachefriends.org/download.html"},
   {label: "Laragon pricing", href: "https://laragon.org/pricing"},

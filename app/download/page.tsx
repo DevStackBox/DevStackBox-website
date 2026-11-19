@@ -36,7 +36,7 @@ export default async function DownloadPage() {
           <p className="mt-3 text-sm text-muted-foreground">
             {release
               ? `${release.tag_name} is the latest stable release from GitHub.`
-              : "The button below installs the latest release from GitHub."}
+              : "Open GitHub Releases to find the latest Windows installer."}
           </p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Download the local PHP stack.</h1>
           <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
@@ -44,7 +44,7 @@ export default async function DownloadPage() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             {installer ? (
-              <a href={installer.browser_download_url} className="btn-primary">
+              <a href={installer.browser_download_url} className="btn-primary plausible-event-name=Installer+Download">
                 <Download className="size-4" />
                 Download {release?.tag_name}
               </a>

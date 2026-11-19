@@ -1,0 +1,10 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:07.000
+Open PHP Versions and install the branches your two sites need.
+
+00:00:07.000 --> 00:00:14.000
+Pin catalog to PHP 8.3 and studio to PHP 8.5 in each project's PHP & tools settings.
+
+00:00:14.000 --> 00:00:21.000
+The sites returned 8.3.36 and 8.5.12. The Windows CLI used the global default, 8.4.27.

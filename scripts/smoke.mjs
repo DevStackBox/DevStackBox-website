@@ -19,7 +19,11 @@ for (const route of routes) {
   const response = await fetch(base+route); assert.equal(response.status,200,route);
   const html=await response.text(); htmlByPath.set(route,html);
   assert.equal((html.match(/<h1\b/g)||[]).length,1,route+" must have one H1");
-  assert.ok(html.includes('rel="canonical"'),route+" canonical");
+  const expected = new URL(route, "https://www.devstackbox.com");
+  const canonicals = [...html.matchAll(/<link\b[^>]*\brel="canonical"[^>]*>/gi)];
+  assert.equal(canonicals.length, 1, route+" canonical count");
+  const href = canonicals[0][0].match(/\bhref="([^"]+)"/)?.[1];
+  assert.equal(new URL(href).href, expected.href, route+" canonical destination");
   assert.ok(!/Content not found\.|Laragon Pro adds|Free tier limits/.test(html),route+" stale content");
 }
 const failures=[];
@@ -44,6 +48,8 @@ assert.deepEqual(failures,[]);
 assert.equal((await fetch(base+"/not-a-real-page")).status,404);
 const sitemap=await (await fetch(base+"/sitemap.xml")).text();
 const urls=[...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
+assert.deepEqual(new Set(urls.map(url => new URL(url).pathname)), new Set(routes), "sitemap covers public routes");
+assert.ok(htmlByPath.get("/").includes('href="/docs/getting-started/multiple-php-versions-windows"'), "homepage links directly to the tutorial");
 assert.equal(new Set(urls).size,urls.length,"duplicate sitemap URLs");
 assert.equal((await fetch(base+"/api/search?query=installation")).status,200);
 console.log("PASS: "+routes.length+" pages, headings, canonicals, internal links/anchors, assets, 404, sitemap, and search.");

@@ -11,5 +11,5 @@ import { getLatestRelease, getRepoStats } from "@/lib/github";
 export const revalidate = 300;
 export default async function HomePage() {
   const [release, stats] = await Promise.all([getLatestRelease(), getRepoStats()]);
-  return <><HeroSection release={release} stats={stats} /><StackVersionsSection /><LatestReleaseBand release={release} /><FeatureShowcase /><ScreenshotGallery /><DocsPreview /><ComparisonTable /><CommunityCta stats={stats} /><BottomDownloadCta /></>;
+  return <><HeroSection release={release} /><StackVersionsSection /><LatestReleaseBand release={release} /><FeatureShowcase /><ScreenshotGallery /><DocsPreview /><ComparisonTable /><CommunityCta stats={stats} /><BottomDownloadCta /></>;
 }

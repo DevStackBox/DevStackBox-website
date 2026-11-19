@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 const GITHUB_REPO = process.env.GITHUB_REPO ?? "DevStackBox/DevStackBox";
 const API = "https://api.github.com";
 
@@ -68,14 +70,14 @@ export async function getReleases(limit = 20): Promise<GitHubRelease[]> {
   }
 }
 
-export async function getRepoStats(): Promise<RepoStats | null> {
+export const getRepoStats = cache(async (): Promise<RepoStats | null> => {
   try {
     return await ghFetch<RepoStats>(`/repos/${GITHUB_REPO}`);
   } catch {
     console.warn("GitHub data unavailable; using the public release fallback.");
     return null;
   }
-}
+});
 
 export function findWindowsInstaller(release: GitHubRelease) {
   return release.assets.find(a => /(?:x64|amd64|x86_64)/i.test(a.name) && /(?:setup|installer).*\.exe$/i.test(a.name));

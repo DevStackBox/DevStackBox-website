@@ -74,7 +74,7 @@ export default async function ReleasesPage() {
                 {installer ? (
                   <a
                     href={installer.browser_download_url}
-                    className="link-primary"
+                    className="link-primary plausible-event-name=Installer+Download"
                   >
                     Download {installer.name}
                   </a>

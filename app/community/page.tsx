@@ -69,6 +69,19 @@ export default function CommunityPage() {
       </div>
 
       <section className="mt-10 rounded-xl border border-border p-6"><h2 className="text-xl font-semibold">Maintained by Nomad Programmer</h2><p className="mt-3 leading-7 text-muted-foreground">DevStackBox grows through practical feedback from Windows PHP developers. <a href="https://www.youtube.com/@NomadProgrammer" className="link-primary">Watch the tutorials on YouTube</a> or help improve the project on GitHub.</p><p className="mt-3 text-sm text-muted-foreground">For vulnerabilities, use the private reporting instructions on our <Link href="/security" className="link-primary">security page</Link>.</p></section>
+      <section id="two-php-versions" className="mt-10 scroll-mt-20 space-y-4">
+        <h2 className="text-2xl font-semibold">Two PHP versions on Windows</h2>
+        <video controls playsInline preload="none" width={1920} height={1080}
+          aria-label="Choose and verify PHP for two local sites"
+          poster="/screenshots/php-default-v0.1.19-hd.jpg" className="h-auto w-full rounded-xl border">
+          <source src="/media/two-php-versions.mp4" type="video/mp4" />
+          <track default kind="captions" srcLang="en" label="English" src="/media/two-php-versions.vtt" />
+        </video>
+        <details><summary className="cursor-pointer">Read the 21-second demo transcript</summary>
+          <p className="mt-2">Open PHP Versions and install both branches. In the PHP &amp; tools settings for each project, pin catalog to 8.3 and studio to 8.5. In our local check the sites returned 8.3.36 and 8.5.12. The Windows command returned 8.4.27, the global default. The controls shown are from v0.1.19 and the runtime results are from v0.1.22.</p>
+        </details>
+        <Link className="link-primary" href="/docs/getting-started/multiple-php-versions-windows">Follow the two-site tutorial</Link>
+      </section>
       <section id="code-of-conduct" className="mt-16 scroll-mt-20">
         <h2 className="text-2xl font-bold">Code of Conduct</h2>
         <div className="mt-6">

@@ -44,7 +44,7 @@ export default async function WhatsNewPage() {
         <p className="mt-3 text-muted-foreground">Released {formatReleaseDate(release.published_at)}</p>
         <div className="mt-6 flex flex-wrap gap-3">
           {installer ? (
-            <a href={installer.browser_download_url} className="btn-primary">
+            <a href={installer.browser_download_url} className="btn-primary plausible-event-name=Installer+Download">
               <Download className="size-4" /> Download for Windows
             </a>
           ) : null}

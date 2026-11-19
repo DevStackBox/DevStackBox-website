@@ -10,7 +10,6 @@ export const stackVersions = {
   apache: { bundledLabel: "2.4.65" },
   mysql: { bundledLabel: "8.4.11 LTS" },
   phpMyAdmin: { bundledLabel: "5.2.2" },
-  xamppWindowsPhp: "8.2",
 } as const;
 
 export const positioning = {

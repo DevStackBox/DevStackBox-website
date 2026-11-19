@@ -37,7 +37,7 @@ export function LatestReleaseSection({ release }: LatestReleaseSectionProps) {
           {installer ? <p className="text-small mt-2 break-all font-mono">{installer.name} · {(installer.size / 1024 / 1024).toFixed(1)} MB</p> : <p className="text-small mt-2">Installer details are available on GitHub.</p>}
           <div className="mt-6 flex flex-wrap gap-3">
             {installer ? (
-              <a href={installer.browser_download_url} className="btn-primary"><Download className="size-4" />Download {release.tag_name}</a>
+              <a href={installer.browser_download_url} className="btn-primary plausible-event-name=Installer+Download"><Download className="size-4" />Download {release.tag_name}</a>
             ) : (
               <Link href="/download" className="btn-primary"><Download className="size-4" />Download</Link>
             )}

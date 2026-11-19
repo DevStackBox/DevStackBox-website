@@ -8,7 +8,7 @@ export function Analytics() {
     <Script
       defer
       data-domain={domain}
-      src="https://plausible.io/js/script.js"
+      src="https://plausible.io/js/script.tagged-events.js"
       strategy="afterInteractive"
     />
   );
