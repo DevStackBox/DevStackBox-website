@@ -26,8 +26,7 @@ export function ScreenshotGallery() {
             <ProductImage src={screenshot.src} alt={screenshot.alt} width={screenshot.width} height={screenshot.height} />
             <div className="p-4">
               <h3 className="font-semibold">{screenshot.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{screenshot.description}</p>
-              <p className="mt-2 text-xs text-muted-foreground">{screenshot.caption}</p>
+              <p className="mt-1 text-sm text-muted-foreground">{screenshot.caption}</p>
             </div>
           </div>
         ))}

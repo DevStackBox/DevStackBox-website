@@ -13,6 +13,6 @@ export function HeroSection({release}: {release: GitHubRelease | null}) {
       <p className="mt-3 text-sm leading-6 text-muted-foreground">Using an AI coding tool? Give it the <a href="/DEVSTACKBOX.md" className="font-medium text-primary underline underline-offset-4">DevStackBox guide</a>.</p>
       {release && <p className="mt-3 text-xs text-muted-foreground"><Link href="/whats-new" className="font-medium text-primary">Latest release {release.tag_name}</Link> · {formatReleaseDate(release.published_at)}</p>}
     </div>
-    <div className="min-w-0 lg:-mr-12"><ProductImage src={resolveMarketingImage(homepage.hero.heroImage)} alt="DevStackBox v0.1.19 Services showing Apache, MySQL and PHP controls" width={1920} height={1032} priority /><p className="mt-3 text-xs text-muted-foreground">v0.1.19 production build, captured at native 1920 × 1032 with demonstration data. Enlarge to inspect the interface or open the original image.</p></div>
+    <div className="min-w-0 lg:-mr-12"><ProductImage src={resolveMarketingImage(homepage.hero.heroImage)} alt="Services screen with Apache and MySQL controls and the default PHP version" width={1920} height={1032} priority /></div>
   </div></section>;
 }

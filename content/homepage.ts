@@ -50,22 +50,10 @@ export const homepage = {
     "Drupal",
   ],
   featureShowcase: [
-    { title: "Your project workspace", description: "Connect a .test hostname, pick an installed PHP runtime per site, and enable trusted HTTPS from project details.", image: "v0.1.19/project-settings.jpg" },
-    { title: "Website health and HTTPS", description: "Inspect website response and HTTPS separately. This demonstration profile shows a disabled demonstration site and its folder settings.", image: "v0.1.19/project-details.jpg" },
-    {
-      title: "Manage your stack",
-      description:
-        "Start Apache and MySQL, inspect versions and ports, and open phpMyAdmin from one dashboard.",
-        image: "v0.1.19/services.jpg",
-        width: 1920,
-        height: 1032,
-    },
-    {
-      title: "Choose your PHP runtime",
-      description:
-        "See exact PHP patch versions, update installed branches, and choose PHP 8.2–8.5 per website. PHP 8.1 has been removed in v0.1.14. Terminal sessions use global PHP.",
-      image: "php-default-v0.1.19-hd.jpg",
-    },
+    { title: "Project settings", image: "v0.1.19/project-settings.jpg" },
+    { title: "Website health and HTTPS", image: "v0.1.19/project-details.jpg" },
+    { title: "Local services", image: "v0.1.19/services.jpg" },
+    { title: "PHP versions", image: "php-default-v0.1.19-hd.jpg" },
   ],
   docLinks: [
     {

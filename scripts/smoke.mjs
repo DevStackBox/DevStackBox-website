@@ -19,6 +19,9 @@ for (const route of routes) {
   const response = await fetch(base+route); assert.equal(response.status,200,route);
   const html=await response.text(); htmlByPath.set(route,html);
   assert.equal((html.match(/<h1\b/g)||[]).length,1,route+" must have one H1");
+  if (route === "/" || route === "/docs" || route.startsWith("/docs/user-guide/") || route.startsWith("/docs/getting-started/")) {
+    assert.doesNotMatch(html, /isolated demonstration profile|captured at native 1920|native HD capture with demonstration data|release availability is shown separately/i, route+" contains an internal screenshot note");
+  }
   const expected = new URL(route, "https://www.devstackbox.com");
   const canonicals = [...html.matchAll(/<link\b[^>]*\brel="canonical"[^>]*>/gi)];
   assert.equal(canonicals.length, 1, route+" canonical count");

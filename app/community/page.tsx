@@ -78,7 +78,7 @@ export default function CommunityPage() {
           <track default kind="captions" srcLang="en" label="English" src="/media/two-php-versions.vtt" />
         </video>
         <details><summary className="cursor-pointer">Read the 21-second demo transcript</summary>
-          <p className="mt-2">Open PHP Versions and install both branches. In the PHP &amp; tools settings for each project, pin catalog to 8.3 and studio to 8.5. In our local check the sites returned 8.3.36 and 8.5.12. The Windows command returned 8.4.27, the global default. The controls shown are from v0.1.19 and the runtime results are from v0.1.22.</p>
+          <p className="mt-2">Open PHP Versions and install both branches. In the PHP &amp; tools settings for each project, pin catalog to 8.3 and studio to 8.5. In our local check the sites returned 8.3.36 and 8.5.12. The Windows command returned 8.4.27, the global default.</p>
         </details>
         <Link className="link-primary" href="/docs/getting-started/multiple-php-versions-windows">Follow the two-site tutorial</Link>
       </section>

@@ -1,6 +1,6 @@
 import { homepage } from "@/content/homepage";
 import { getScreenshot } from "@/lib/screenshots";
-export type MarketingScreenshot = {src: string; title: string; description: string; alt: string; caption: string; width: number; height: number};
+export type MarketingScreenshot = {src: string; title: string; alt: string; caption: string; width: number; height: number};
 // Publish only reviewed captures; never discover GIFs automatically.
 export function resolveMarketingImage(filename: string): string { return "/screenshots/" + filename; }
 export function listGalleryImages(): MarketingScreenshot[] {
